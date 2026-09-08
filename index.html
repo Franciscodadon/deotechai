@@ -317,6 +317,48 @@
       pointer-events: none;
     }
 
+    /* Meet the Founder */
+    #founder { scroll-margin-top: var(--nav-h); }
+    .founder-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 380px) 1fr;
+      gap: clamp(2rem, 5vw, 4.5rem);
+      align-items: start;
+    }
+    .founder-figure { position: sticky; top: calc(var(--nav-h) + 1.5rem); margin: 0; }
+    .founder-frame {
+      border-radius: 999px 999px var(--radius-lg) var(--radius-lg);
+      overflow: hidden;
+      /* marble + mark shows until the portrait file is in place */
+      background: url("/logo-mark.png") center 42% / 38% auto no-repeat,
+                  radial-gradient(circle at 40% 30%, #FFFFFF 0%, var(--alabaster) 45%, var(--marble-deep) 100%);
+      border: 1px solid rgba(176,141,69,0.45);
+      box-shadow: var(--shadow-lg), 0 0 0 8px var(--alabaster), 0 0 0 9px rgba(176,141,69,0.35);
+      aspect-ratio: 2 / 3;
+    }
+    .founder-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .founder-figure figcaption { display: block; text-align: center; margin-top: 1.4rem; }
+    .founder-copy { max-width: 66ch; }
+    .founder-copy > .mono-receipt { display: block; margin-bottom: 1rem; }
+    .founder-copy h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); line-height: 1.2; margin-bottom: 1.25rem; }
+    .founder-copy p { font-size: clamp(1.05rem, 2.1vw, 1.2rem); }
+    .founder-copy p + p { margin-top: 1rem; }
+    .founder-quote {
+      margin: 1.5rem 0;
+      padding: 1.25rem 1.5rem;
+      border-left: 3px solid var(--gold);
+      background: rgba(255,255,255,0.55);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      color: var(--porphyry);
+      font-size: clamp(1.15rem, 2.4vw, 1.35rem);
+      line-height: 1.5;
+    }
+    @media (max-width: 860px) {
+      .founder-grid { grid-template-columns: 1fr; }
+      .founder-figure { position: static; max-width: 320px; margin: 0 auto 1.5rem; }
+      .founder-copy { max-width: none; }
+    }
+
     /* Positioning section: marble study scene behind the copy */
     #positioning {
       position: relative;
@@ -1344,7 +1386,7 @@
         <a href="#top">The System</a>
         <a href="/services/">Services</a>
         <a href="/workshop/" class="is-featured">Upcoming AI Classes</a>
-        <a href="#fit">About the Founder</a>
+        <a href="#founder">About the Founder</a>
       </nav>
       <a href="#cta" class="site-nav-cta"><span class="long">Book a Strategy Call</span><span class="short">Book a Call</span></a>
     </div>
@@ -1787,6 +1829,29 @@
     </div>
   </section>
 
+  <!-- SECTION 8.5: MEET THE FOUNDER -->
+  <section class="surface-marble" id="founder">
+    <div class="container founder-grid">
+      <figure class="founder-figure reveal reveal-fade">
+        <div class="founder-frame">
+          <img src="/founder.jpg" alt="Founder of Deo Tech AI" width="1400" height="2100" loading="lazy" decoding="async" onerror="this.remove()">
+        </div>
+        <figcaption class="mono-receipt">// FOUNDER OF DEO TECH AI</figcaption>
+      </figure>
+
+      <div class="founder-copy">
+        <span class="mono-receipt reveal reveal-fade">// MEET THE FOUNDER</span>
+        <h2 class="reveal reveal-wipe">Meet the Founder</h2>
+        <p class="reveal reveal-fade delay-1">I did not come from a technical background. I came into technology the way most business owners do: I had a problem that needed to be solved.</p>
+        <p class="reveal reveal-fade delay-1">Early in my real estate career, I realized that working harder was not going to be enough. I needed better systems, better follow-up, and a better way to understand what was happening inside the business. What started as a need to become more efficient turned into a natural obsession with connecting the puzzle pieces between people, technology, workflows, and results. After helping a friend implement new systems and workflows that contributed to more than $100K in closed deal volume within six months, I began building custom CRM systems, teaching automation at scale, and exploring how these same principles could transform businesses outside of real estate.</p>
+        <p class="reveal reveal-fade delay-2">Today, I am building Deo Tech AI around a simple belief: technology should give people more clarity, more leverage, and more freedom, not create more complexity. I approach AI from the perspective of an operator and business owner, paying close attention to the customer journey, the moments where communication breaks down, and the places where businesses either underuse technology or automate things that still require a human touch. My goal is to help leaders understand their numbers, make better decisions, and build businesses that do not depend on them being involved in every moving part.</p>
+        <p class="reveal reveal-fade delay-2">That mission is personal to me. I was named after my grandfather, an entrepreneur and restaurant owner in Honduras, and I have always viewed entrepreneurship as an opportunity to create something that can outlast you. Being raised in America gave me opportunities I never want to take for granted, and I believe the rise of AI creates another defining opportunity for this generation. Through Deo Tech AI, I want to help founders, young entrepreneurs, organizations, and future generations develop the fluency to use AI in ways that create real and sustainable impact.</p>
+        <blockquote class="founder-quote quote-voice reveal reveal-fade delay-3">Because at the end of the day, businesses live and die by two things: payments keep the business moving, and KPIs tell you whether it is moving in the right direction. The numbers tell the story. Our job is to help leaders understand that story and act on it.</blockquote>
+        <p class="reveal reveal-fade delay-3">For me, this is bigger than technology. It is about building businesses that create freedom, strengthening the people behind them, and creating something our families and future generations can be proud of.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- SECTION 9: CTA -->
   <section class="surface-glow-low" id="cta">
     <div class="container cta-container">
@@ -1814,7 +1879,7 @@
         <a href="#top">The System</a>
         <a href="/services/">Services</a>
         <a href="/workshop/">Upcoming AI Classes</a>
-        <a href="#fit">About the Founder</a>
+        <a href="#founder">About the Founder</a>
         <a href="#cta">Book a Call</a>
       </nav>
       <span class="mono-receipt footer-meta">// THE 3D DECISION SYSTEM &middot; &copy; 2026 DEO TECH AI</span>
