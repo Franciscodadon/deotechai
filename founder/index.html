@@ -195,6 +195,26 @@
       .btn-systema { width: 100%; justify-content: center; padding: 1.05rem 1.5rem; }
     }
     @media (max-width: 380px) { .mono-receipt { font-size: 0.7rem; letter-spacing: 0.06em; } }
+
+    /* Mobile menu */
+    .nav-toggle { display: none; width: 42px; height: 42px; border: 1px solid rgba(176,141,69,0.45); border-radius: 999px;
+      background: rgba(255,255,255,0.6); flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+      cursor: pointer; flex-shrink: 0; padding: 0; }
+    .nav-toggle span { display: block; width: 16px; height: 1.5px; background: var(--ink); transition: transform 0.3s var(--ease-carved), opacity 0.3s; }
+    .site-nav.menu-open .nav-toggle span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .site-nav.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
+    .site-nav.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+    @media (max-width: 720px) {
+      .nav-toggle { display: flex; }
+      .site-nav-cta { margin-left: auto; }
+      .site-nav-links { display: none; position: absolute; top: var(--nav-h); left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0;
+        background: rgba(244,241,234,0.97); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(176,141,69,0.35); box-shadow: 0 12px 30px rgba(28,27,24,0.12); padding: 0.25rem 0 0.75rem; }
+      .site-nav.menu-open .site-nav-links { display: flex; }
+      .site-nav.menu-open { background: rgba(244,241,234,0.97); border-bottom-color: rgba(176,141,69,0.35); }
+      .site-nav-links a { padding: 0.95rem clamp(1.25rem, 5vw, 2rem); font-size: 0.8rem; letter-spacing: 0.08em; border-top: 1px solid rgba(176,141,69,0.18); }
+      .site-nav-links a::after { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -205,13 +225,14 @@
         <img class="logo-mark" src="/logo-mark.png" alt="" width="400" height="386" decoding="async">
         DEO TECH AI
       </a>
-      <nav class="site-nav-links">
+      <nav class="site-nav-links" id="site-nav-links">
         <a href="/">Home</a>
         <a href="/services/">Services</a>
         <a href="/workshop/" class="is-featured">Upcoming AI Classes</a>
         <a href="/founder/" aria-current="page">About the Founder</a>
       </nav>
       <a href="#cta" class="site-nav-cta"><span class="long">Book a Strategy Call</span><span class="short">Book a Call</span></a>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav-links"><span></span><span></span><span></span></button>
     </div>
   </header>
 
@@ -297,6 +318,16 @@
       var nav = document.getElementById('site-nav'); if (!nav) return;
       function onScroll() { nav.classList.toggle('is-scrolled', window.scrollY > 40); }
       onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    /* Mobile menu toggle */
+    (function () {
+      var nav = document.getElementById('site-nav'); var btn = nav && nav.querySelector('.nav-toggle');
+      if (!btn) return;
+      function setOpen(open) { nav.classList.toggle('menu-open', open); btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+      btn.addEventListener('click', function () { setOpen(!nav.classList.contains('menu-open')); });
+      nav.querySelectorAll('.site-nav-links a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+      window.addEventListener('resize', function () { if (window.innerWidth > 720) setOpen(false); }, { passive: true });
     })();
   </script>
 </body>
