@@ -317,6 +317,29 @@
       pointer-events: none;
     }
 
+    /* Positioning section: marble study scene behind the copy */
+    #positioning {
+      position: relative;
+      isolation: isolate;
+      /* full width so the books (left) and the view (right) both stay in frame; marble continues below */
+      background: url("/positioning-bg.jpg") center top / 100% auto no-repeat, var(--marble);
+    }
+    #positioning::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(244,241,234,0.86) 0%, rgba(244,241,234,0.74) 40%, rgba(244,241,234,0.30) 68%, rgba(244,241,234,0.12) 100%),
+        linear-gradient(180deg, rgba(244,241,234,0.25) 0%, rgba(244,241,234,0) 18%, rgba(244,241,234,0) 42%, rgba(231,226,214,0.92) 60%, var(--marble) 100%);
+      pointer-events: none;
+    }
+    #positioning > .container { position: relative; z-index: 1; }
+    @media (max-width: 960px) {
+      #positioning { background-image: url("/positioning-bg-mobile.jpg"); }
+      #positioning::before { background: rgba(244,241,234,0.86); }
+    }
+
     /* Homepage hero: marble terrace scene, washed on the left so the copy stays legible.
        Swap the image by changing one word: hero-bg.jpg | hero-bg-light.jpg | hero-bg-rich.jpg */
     #top {
@@ -1433,7 +1456,7 @@
   </section>
 
   <!-- SECTION 2: POSITIONING (CHAOS TO CONTROL) -->
-  <section class="surface-marble">
+  <section class="surface-marble" id="positioning">
     <div class="container">
       <div class="section-head">
         <span class="mono-receipt reveal reveal-fade">// STOP GUESSING</span>
