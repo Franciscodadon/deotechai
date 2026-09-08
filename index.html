@@ -317,9 +317,40 @@
       pointer-events: none;
     }
 
-    /* Homepage hero: marble plaza scene, washed on the left so the copy stays legible */
+    /* Homepage hero: marble terrace scene, washed on the left so the copy stays legible.
+       Swap the image by changing one word: hero-bg.jpg | hero-bg-light.jpg | hero-bg-rich.jpg */
     #top {
-      background: url("/hero-bg.jpg") center 30% / cover no-repeat, var(--alabaster);
+      --hero-image: url("/hero-bg.jpg");
+      background: var(--alabaster);
+      isolation: isolate;
+    }
+    .hero-scene {
+      position: absolute;
+      inset: -6%;
+      z-index: -1;
+      background: var(--hero-image) center 32% / cover no-repeat;
+      animation: heroDrift 38s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+    .hero-haze {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(42% 55% at 72% 34%, rgba(255,228,184,0.55), rgba(255,228,184,0) 70%);
+      mix-blend-mode: screen;
+      animation: hazeDrift 30s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    @keyframes heroDrift {
+      from { transform: scale(1) translate(0, 0); }
+      to   { transform: scale(1.06) translate(-1.4%, 1%); }
+    }
+    @keyframes hazeDrift {
+      from { transform: translate(-4%, 2%); opacity: 0.6; }
+      to   { transform: translate(4%, -2%);  opacity: 0.95; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-scene, .hero-haze { animation: none; }
     }
     #top::before {
       background: linear-gradient(90deg,
@@ -334,7 +365,7 @@
       background: linear-gradient(180deg, rgba(244,241,234,0.55) 0%, rgba(244,241,234,0) 22%, rgba(244,241,234,0) 78%, rgba(244,241,234,0.7) 100%);
     }
     @media (max-width: 960px) {
-      #top { background-image: url("/hero-bg-mobile.jpg"); }
+      #top { --hero-image: url("/hero-bg-mobile.jpg"); }
       #top::before { background: rgba(244,241,234,0.86); }
     }
 
@@ -1237,6 +1268,8 @@
 
   <!-- SECTION 1: HERO -->
   <section class="surface-glow" id="top">
+    <div class="hero-scene" aria-hidden="true"></div>
+    <div class="hero-haze" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div class="hero-copy">
         <span class="mono-receipt hero-eyebrow">// INTELLIGENT OPERATIONS</span>
