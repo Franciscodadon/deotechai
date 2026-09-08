@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SYSTEMA // AI Agent Workshop</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --alabaster: #F4F1EA;
+      --marble: #E7E2D6;
+      --marble-deep: #DED8C8;
+      --ink-soft: #3B3A34;
+      --ink: #1C1B18;
+      --porphyry: #6E2436;
+      --burgundy: #8C2F3D;
+      --bronze: #9A6B3F;
+      --gold: #B08D45;
+      --gold-bright: #C79A4E;
+      --verdigris: #3E6B5E;
+
+      --ease-carved: cubic-bezier(0.16, 1, 0.3, 1);
+      --anim-duration: 0.8s;
+      --section-pad-y: clamp(3.5rem, 8vw, 6.5rem);
+      --section-pad-x: clamp(1.25rem, 5vw, 2rem);
+      --nav-h: 76px;
+
+      --shadow-sm: 0 1px 2px rgba(28,27,24,0.06), 0 2px 6px rgba(28,27,24,0.05);
+      --shadow-md: 0 4px 10px rgba(28,27,24,0.06), 0 12px 28px rgba(28,27,24,0.08);
+      --shadow-lg: 0 10px 24px rgba(28,27,24,0.08), 0 24px 56px rgba(28,27,24,0.12);
+      --shadow-glow: 0 0 0 1px rgba(199,154,78,0.25), 0 8px 30px rgba(122,34,51,0.35);
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      background-color: var(--alabaster);
+      color: var(--ink);
+      font-family: 'Cormorant', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--porphyry); color: var(--alabaster); }
+    a { color: inherit; }
+    img, svg { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    h1, h2, h3, .heading-cap {
+      font-family: 'Cinzel', Georgia, serif;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 700;
+      text-wrap: balance;
+    }
+    .mono-receipt {
+      font-family: 'IBM Plex Mono', 'Courier New', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .quote-voice { font-family: 'Cormorant', Georgia, serif; font-style: italic; }
+
+    section { padding: var(--section-pad-y) var(--section-pad-x); width: 100%; display: flex; justify-content: center; align-items: center; }
+    .container { max-width: 1080px; width: 100%; }
+
+    .surface-light { background-color: var(--alabaster); color: var(--ink); }
+    .surface-marble { background-color: var(--marble); color: var(--ink); }
+    .surface-light .mono-receipt, .surface-marble .mono-receipt { color: var(--porphyry); }
+    .surface-light p, .surface-marble p { color: var(--ink-soft); }
+
+    .section-head { max-width: 720px; }
+    .section-head.is-centered { margin: 0 auto; text-align: center; }
+    .section-head .mono-receipt { display: block; margin-bottom: 1rem; }
+    .section-head h2 { font-size: clamp(1.5rem, 3.6vw, 2.1rem); line-height: 1.2; margin-bottom: 1.25rem; }
+    .section-head p { font-size: clamp(1.05rem, 2.2vw, 1.25rem); }
+    .section-head p + p { margin-top: 1rem; }
+
+    .surface-glow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(28,27,24,0.10) 1px, transparent 1px);
+      background-size: 26px 26px;
+      -webkit-mask-image: radial-gradient(90% 80% at 50% 30%, rgba(0,0,0,0.9), transparent 75%);
+      mask-image: radial-gradient(90% 80% at 50% 30%, rgba(0,0,0,0.9), transparent 75%);
+      pointer-events: none;
+    }
+
+    /* Nav */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: transparent;
+      border-bottom: 1px solid transparent;
+      transition: background-color 0.4s var(--ease-carved), border-color 0.4s var(--ease-carved), box-shadow 0.4s var(--ease-carved);
+    }
+    .site-nav.is-scrolled {
+      background: rgba(244,241,234,0.86);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(176,141,69,0.35);
+      box-shadow: 0 8px 24px rgba(28,27,24,0.08);
+    }
+    .site-nav-inner {
+      max-width: 1080px; margin: 0 auto;
+      padding: 0 clamp(1.25rem, 5vw, 2rem);
+      height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+    }
+    .site-nav-logo {
+      font-family: 'Cinzel', Georgia, serif; font-weight: 700; letter-spacing: 0.15em; font-size: 1.1rem;
+      color: var(--ink); text-decoration: none; flex-shrink: 0;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+    }
+    .site-nav-logo svg { width: 22px; height: 22px; color: var(--gold); }
+    .site-nav-links { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2rem); flex: 1; justify-content: center; }
+    .site-nav-links a {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-soft); text-decoration: none; position: relative; padding: 0.4rem 0;
+      transition: color 0.3s var(--ease-carved);
+      white-space: nowrap;
+    }
+    .site-nav-links a::after {
+      content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px;
+      background: var(--gold); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s var(--ease-carved);
+    }
+    .site-nav-links a:hover, .site-nav-links a[aria-current="page"] { color: var(--porphyry); }
+    .site-nav-links a:hover::after, .site-nav-links a[aria-current="page"]::after { transform: scaleX(1); }
+    .site-nav-links a.is-featured::before {
+      content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold-bright); margin-right: 0.5rem; vertical-align: middle;
+      box-shadow: 0 0 6px 1px rgba(199,154,78,0.6);
+    }
+    .site-nav-cta {
+      display: inline-flex; align-items: center;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+      text-decoration: none; color: var(--ink);
+      background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 100%);
+      padding: 0.65rem 1.25rem; border-radius: 999px; white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(122,34,51,0.3);
+      transition: transform 0.3s var(--ease-carved), box-shadow 0.3s var(--ease-carved), filter 0.3s var(--ease-carved);
+    }
+    .site-nav-cta:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 8px 20px rgba(122,34,51,0.4); }
+    .site-nav-cta .long { display: inline; }
+    .site-nav-cta .short { display: none; }
+
+    /* Button */
+    .btn-systema {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 100%);
+      color: var(--ink);
+      font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 0.9rem;
+      text-decoration: none; padding: 1.15rem 2.25rem; text-transform: uppercase; letter-spacing: 0.1em;
+      border-radius: 999px; box-shadow: var(--shadow-glow);
+      transition: transform 0.3s var(--ease-carved), box-shadow 0.3s var(--ease-carved), filter 0.3s var(--ease-carved);
+      max-width: 100%;
+    }
+    .btn-systema .btn-arrow { transition: transform 0.3s var(--ease-carved); }
+    .btn-systema:hover { transform: translateY(-3px); filter: brightness(1.06); box-shadow: 0 0 0 1px rgba(199,154,78,0.4), 0 14px 36px rgba(122,34,51,0.45); }
+    .btn-systema:hover .btn-arrow { transform: translateX(4px); }
+    .btn-systema:active { transform: translateY(-1px) scale(0.98); }
+    .btn-systema:focus-visible, .site-nav-cta:focus-visible, .site-nav-links a:focus-visible {
+      outline: 2px solid var(--gold-bright); outline-offset: 3px;
+    }
+
+    /* Page header */
+    .surface-glow {
+      background: radial-gradient(120% 150% at 84% 14%, #FFFFFF 0%, var(--alabaster) 30%, var(--marble) 62%, var(--marble-deep) 100%);
+      position: relative; overflow: hidden;
+      padding-top: calc(var(--section-pad-y) + var(--nav-h));
+    }
+    .surface-glow::after {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(60% 55% at 84% 14%, rgba(110,36,54,0.12), rgba(110,36,54,0) 70%);
+      pointer-events: none;
+    }
+    .page-head { position: relative; z-index: 1; max-width: 820px; }
+    .page-eyebrow { color: var(--porphyry); margin-bottom: 1.5rem; display: block; animation: fadeRise var(--anim-duration) var(--ease-carved) forwards; }
+    .page-title {
+      font-size: clamp(1.75rem, 4.4vw, 2.75rem); line-height: 1.15; color: var(--ink); margin-bottom: 1.25rem;
+      animation: wipeLeft var(--anim-duration) var(--ease-carved) 120ms forwards; opacity: 0;
+    }
+    .page-lede {
+      font-size: clamp(1.15rem, 2.4vw, 1.4rem); color: var(--porphyry); margin-bottom: 1.75rem; max-width: 640px;
+      animation: fadeRise var(--anim-duration) var(--ease-carved) 200ms forwards; opacity: 0;
+    }
+    .page-actions {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem; margin-bottom: 1.75rem;
+      animation: fadeRise var(--anim-duration) var(--ease-carved) 280ms forwards; opacity: 0;
+    }
+    .page-actions .mono-receipt { color: var(--porphyry); font-size: 0.72rem; }
+    .page-receipts { display: flex; flex-wrap: wrap; gap: 0.75rem; animation: fadeRise var(--anim-duration) var(--ease-carved) 360ms forwards; opacity: 0; }
+    .page-receipts span {
+      display: inline-flex; align-items: center; gap: 0.5rem; color: var(--porphyry);
+      background: rgba(255,255,255,0.6); border: 1px solid rgba(176,141,69,0.55); border-radius: 999px;
+      padding: 0.5rem 0.95rem; backdrop-filter: blur(6px);
+    }
+    .page-receipts span::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+      box-shadow: 0 0 8px 1px rgba(176,141,69,0.6); flex-shrink: 0;
+    }
+
+    /* Problem section: copy beside the failure points */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+    .leak-panel {
+      background: var(--marble-deep);
+      border-radius: var(--radius-lg);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+      box-shadow: var(--shadow-lg);
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .leak-panel .mono-receipt { color: var(--burgundy); }
+    .leak-panel h3 { font-size: clamp(1.1rem, 2.2vw, 1.3rem); color: var(--ink-soft); }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .chips span {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--ink-soft); background: rgba(255,255,255,0.45);
+      border: 1px dashed rgba(28,27,24,0.35); border-radius: 8px; padding: 0.55rem 0.8rem;
+    }
+    .chips span::before { content: "\00d7"; color: var(--burgundy); font-weight: 700; }
+    .chips span:nth-child(1) { transform: rotate(-3deg); }
+    .chips span:nth-child(2) { transform: rotate(2deg) translateY(3px); }
+    .chips span:nth-child(3) { transform: rotate(-2deg); }
+    .chips span:nth-child(4) { transform: rotate(3deg) translateY(-2px); }
+    .chips span:nth-child(5) { transform: rotate(-4deg) translateY(3px); }
+
+    /* Workshop: teach it -> it handles */
+    .teach-frame {
+      position: relative;
+      margin-top: clamp(2.5rem, 6vw, 4rem);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .panel-teach, .panel-handles {
+      padding: clamp(1.75rem, 4vw, 3rem);
+      display: flex; flex-direction: column; gap: 1.25rem;
+      position: relative;
+    }
+    .panel-teach { background: var(--marble); }
+    .panel-handles { background: #FFFFFF; }
+    .panel-teach > *, .panel-handles > * { position: relative; z-index: 2; }
+    .panel-title { font-size: clamp(1.1rem, 2.2vw, 1.3rem); color: var(--porphyry); }
+    .teach-list { display: grid; gap: 0.6rem; }
+    .teach-list li {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: #FFFFFF; border: 1px solid rgba(28,27,24,0.07); border-radius: var(--radius-sm);
+      padding: 0.75rem 0.95rem; box-shadow: var(--shadow-sm);
+      font-size: 1.05rem; color: var(--ink);
+    }
+    .teach-list li i {
+      flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+      background: var(--alabaster); border: 1px solid rgba(176,141,69,0.5);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: 'IBM Plex Mono', monospace; font-style: normal; font-size: 0.6rem; color: var(--porphyry);
+    }
+    .handles-list { display: grid; gap: 0.6rem; }
+    .handles-list li {
+      display: flex; align-items: center; gap: 0.75rem;
+      background: var(--alabaster); border: 1px solid rgba(28,27,24,0.06); border-radius: var(--radius-sm);
+      padding: 0.75rem 0.95rem;
+      font-size: 1.05rem; color: var(--ink);
+    }
+    .handles-list li::before {
+      content: ""; flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; background: var(--gold);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 60% no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 60% no-repeat;
+    }
+    .light-path {
+      position: absolute; left: 50%; top: 50%; width: 150px; height: 2px;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(90deg, transparent 0%, var(--gold-bright) 50%, transparent 100%);
+      pointer-events: none; z-index: 1;
+    }
+    .teach-arrow {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      width: 58px; height: 58px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold-bright), var(--gold));
+      color: var(--ink);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 30px rgba(28,27,24,0.3), 0 0 0 0 rgba(199,154,78,0.4);
+      animation: hubPulse 3s var(--ease-carved) infinite;
+      z-index: 3;
+    }
+    .teach-arrow svg { width: 24px; height: 24px; }
+    @keyframes hubPulse {
+      0%, 100% { box-shadow: 0 10px 30px rgba(28,27,24,0.3), 0 0 0 0 rgba(199,154,78,0.4); }
+      50% { box-shadow: 0 10px 30px rgba(28,27,24,0.3), 0 0 0 14px rgba(199,154,78,0); }
+    }
+
+    /* Workshop dates */
+    .date-block {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1.25rem;
+      margin-top: clamp(2rem, 5vw, 3rem);
+    }
+    .date-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(28,27,24,0.07);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      padding: 1.15rem 1.9rem;
+      text-align: center;
+      min-width: 200px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.4s var(--ease-carved), box-shadow 0.4s var(--ease-carved);
+    }
+    .date-card::before {
+      content: ""; position: absolute; left: 1.25rem; right: 1.25rem; top: 0; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+    }
+    .date-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .date-card .mono-receipt { display: block; font-size: 0.62rem; color: var(--gold); margin-bottom: 0.45rem; }
+    .date-card .date-main {
+      display: block;
+      font-family: 'Cinzel', Georgia, serif; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.05em; font-size: 1.15rem; color: var(--ink); line-height: 1.2;
+    }
+    .date-card .date-sub {
+      display: block;
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.66rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ink-soft); margin-top: 0.4rem;
+    }
+
+    .details-strip {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem;
+      margin-top: clamp(1.25rem, 3vw, 1.75rem);
+    }
+    .details-strip span {
+      font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--porphyry); background: #FFFFFF; border: 1px solid rgba(110,36,54,0.2);
+      border-radius: 999px; padding: 0.45rem 0.85rem;
+    }
+
+    /* Who it's for */
+    .fit-card {
+      max-width: 820px; margin: 0 auto;
+      background: #FFFFFF; border: 1px solid rgba(28,27,24,0.07);
+      border-radius: var(--radius-lg); padding: clamp(1.75rem, 4vw, 3rem);
+      box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .fit-card::before {
+      content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px;
+      background: linear-gradient(90deg, var(--porphyry), var(--gold-bright), var(--porphyry));
+    }
+    .fit-card .mono-receipt { display: block; margin-bottom: 1rem; }
+    .fit-card h2 { font-size: clamp(1.35rem, 3vw, 1.8rem); line-height: 1.25; margin-bottom: 1rem; }
+    .fit-card p { font-size: clamp(1.05rem, 2.2vw, 1.2rem); max-width: 680px; margin: 0 auto; }
+    .fit-card .btn-systema { margin-top: 1.75rem; }
+
+    /* Footer */
+    .site-footer { background: var(--marble-deep); border-top: 1px solid rgba(176,141,69,0.45); padding: 2.5rem var(--section-pad-x); }
+    .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2rem; }
+    .footer-brand { display: flex; flex-direction: column; gap: 0.35rem; }
+    .footer-brand .site-nav-logo { font-size: 1rem; }
+    .footer-brand p { color: var(--ink-soft); font-style: italic; font-size: 1rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+    .footer-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; }
+    .footer-links a:hover { color: var(--porphyry); }
+    .footer-meta { color: var(--porphyry); font-size: 0.7rem; }
+
+    /* Reveal + keyframes */
+    .js .reveal { opacity: 0; }
+    .js .reveal.in-view.reveal-fade { animation: fadeRise var(--anim-duration) var(--ease-carved) forwards; }
+    .js .reveal.in-view.reveal-wipe { animation: wipeLeft var(--anim-duration) var(--ease-carved) forwards; }
+    .js .reveal.in-view.delay-1 { animation-delay: 0.1s; }
+    .js .reveal.in-view.delay-2 { animation-delay: 0.2s; }
+    .js .reveal.in-view.delay-3 { animation-delay: 0.3s; }
+
+    @keyframes fadeRise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes wipeLeft { from { opacity: 0; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .page-eyebrow, .page-title, .page-lede, .page-actions, .page-receipts, .reveal, .teach-arrow {
+        animation: none !important; opacity: 1 !important; clip-path: none !important; transform: none !important;
+      }
+      .teach-arrow { transform: translate(-50%, -50%) !important; }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .problem-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .site-nav-links { display: none; }
+      .site-nav-cta .long { display: none; }
+      .site-nav-cta .short { display: inline; }
+      .teach-frame { grid-template-columns: 1fr; }
+      .light-path { display: none; }
+      .teach-arrow { position: relative; left: auto; top: auto; transform: rotate(90deg); margin: -29px auto; }
+      .panel-teach { padding-bottom: 3.25rem; }
+      .panel-handles { padding-top: 3.25rem; }
+    }
+    @media (max-width: 640px) {
+      body { font-size: 1.05rem; }
+      .btn-systema { width: 100%; justify-content: center; padding: 1.05rem 1.5rem; }
+      .page-actions { flex-direction: column; align-items: stretch; }
+      .page-actions .mono-receipt { text-align: center; }
+    }
+    @media (max-width: 380px) {
+      .mono-receipt { font-size: 0.7rem; letter-spacing: 0.06em; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-nav" id="site-nav">
+    <div class="site-nav-inner">
+      <a href="/" class="site-nav-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 5 16h14z"/><circle cx="12" cy="4" r="1.6" fill="currentColor" stroke="none"/><circle cx="5" cy="16" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="16" r="1.6" fill="currentColor" stroke="none"/></svg>
+        SYSTEMA
+      </a>
+      <nav class="site-nav-links">
+        <a href="/#system">The System</a>
+        <a href="/services/">Services</a>
+        <a href="/workshop/" class="is-featured" aria-current="page">Upcoming AI Classes</a>
+        <a href="/#fit">Who It&rsquo;s For</a>
+      </nav>
+      <a href="#" class="site-nav-cta"><span class="long">Reserve Your Seat</span><span class="short">Reserve a Seat</span></a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="surface-glow">
+    <div class="container page-head">
+      <span class="mono-receipt page-eyebrow">// 2-DAY WORKSHOP &middot; SEPTEMBER 22&ndash;23, 2026</span>
+      <h1 class="page-title">The AI Agent Workshop for Real Estate Agents and Wholesalers</h1>
+      <p class="page-lede quote-voice">Build and train an AI agent that holds conversations, qualifies leads, answers questions, and moves prospects toward booked appointments.</p>
+      <div class="page-actions">
+        <a href="#" class="btn-systema">Reserve Your Seat <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+        <span class="mono-receipt">// SEATS ARE LIMITED</span>
+      </div>
+      <div class="page-receipts mono-receipt">
+        <span>// SEPT 22&ndash;23, 2026</span>
+        <span>// AGENTS &amp; WHOLESALERS</span>
+        <span>// HANDS-ON</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE PROBLEM -->
+  <section class="surface-light">
+    <div class="container problem-grid">
+      <div class="section-head">
+        <span class="mono-receipt reveal reveal-fade">// THE PROBLEM</span>
+        <h2 class="reveal reveal-wipe">You don&rsquo;t lack leads. Follow-up gets overwhelming.</h2>
+        <p class="reveal reveal-fade delay-1">Real estate agents and wholesalers do not lose opportunities because they lack leads. They lose opportunities because follow-up gets overwhelming. One text blast turns into too many replies. Hot prospects get buried. Appointments do not get booked fast enough. And when your schedule is not built for consistency, leads start falling through the cracks before you ever get a chance to make the offer.</p>
+      </div>
+      <div class="leak-panel reveal reveal-fade delay-2">
+        <span class="mono-receipt">// WHERE OPPORTUNITIES LEAK</span>
+        <h3 class="heading-cap">One text blast later&hellip;</h3>
+        <div class="chips" aria-label="Where follow-up breaks down">
+          <span>Too many replies</span>
+          <span>Hot prospects buried</span>
+          <span>Appointments booked too slow</span>
+          <span>Inconsistent schedule</span>
+          <span>Leads through the cracks</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE WORKSHOP -->
+  <section class="surface-marble">
+    <div class="container">
+      <div class="section-head is-centered">
+        <span class="mono-receipt reveal reveal-fade">// THE 2-DAY WORKSHOP</span>
+        <h2 class="reveal reveal-wipe">Build an AI agent that supports your lead generation.</h2>
+        <p class="reveal reveal-fade delay-1">In this 2-day workshop, you&rsquo;ll learn how to build and train an AI agent that supports your lead generation. You&rsquo;ll teach it your business, offers, FAQs, qualification process, and booking flow, so it can hold conversations, qualify leads, answer questions, and move prospects toward booked appointments.</p>
+      </div>
+
+      <div class="teach-frame reveal reveal-fade delay-2">
+        <div class="light-path" aria-hidden="true"></div>
+        <div class="panel-teach">
+          <span class="mono-receipt">// YOU TEACH IT</span>
+          <h3 class="panel-title heading-cap">Your business, in its memory</h3>
+          <ul class="teach-list">
+            <li><i>01</i>Your business</li>
+            <li><i>02</i>Your offers</li>
+            <li><i>03</i>Your FAQs</li>
+            <li><i>04</i>Your qualification process</li>
+            <li><i>05</i>Your booking flow</li>
+          </ul>
+        </div>
+        <div class="teach-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </div>
+        <div class="panel-handles">
+          <span class="mono-receipt">// IT HANDLES</span>
+          <h3 class="panel-title heading-cap">The follow-up you can&rsquo;t keep up with</h3>
+          <ul class="handles-list">
+            <li>Holds conversations</li>
+            <li>Qualifies leads</li>
+            <li>Answers questions</li>
+            <li>Moves prospects toward booked appointments</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="date-block reveal reveal-fade delay-3">
+        <div class="date-card">
+          <span class="mono-receipt">// DAY 01</span>
+          <span class="date-main">Sept 22, 2026</span>
+          <span class="date-sub">Tuesday</span>
+        </div>
+        <div class="date-card">
+          <span class="mono-receipt">// DAY 02</span>
+          <span class="date-main">Sept 23, 2026</span>
+          <span class="date-sub">Wednesday</span>
+        </div>
+      </div>
+
+      <div class="details-strip reveal reveal-fade delay-3" aria-label="Workshop details">
+        <span>2-day workshop</span>
+        <span>Live &amp; hands-on</span>
+        <span>Real estate agents &amp; wholesalers</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="surface-light">
+    <div class="container">
+      <div class="fit-card reveal reveal-fade">
+        <span class="mono-receipt">// WHO THIS WORKSHOP IS FOR</span>
+        <h2>Tired of missed follow-ups, messy lead conversations, and empty calendar gaps?</h2>
+        <p>This workshop is for real estate agents and wholesalers who are tired of missed follow-ups, messy lead conversations, and empty calendar gaps. If you want a smarter way to respond faster, qualify better, and fill your calendar with prospects who are ready for the next step, this workshop will show you how to make AI agents part of your lead generation system.</p>
+        <a href="#" class="btn-systema">Reserve Your Seat <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="site-nav-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 5 16h14z"/><circle cx="12" cy="4" r="1.6" fill="currentColor" stroke="none"/><circle cx="5" cy="16" r="1.6" fill="currentColor" stroke="none"/><circle cx="19" cy="16" r="1.6" fill="currentColor" stroke="none"/></svg>
+          SYSTEMA
+        </a>
+        <p>Intelligent operations you actually own.</p>
+      </div>
+      <nav class="footer-links">
+        <a href="/#system">The System</a>
+        <a href="/services/">Services</a>
+        <a href="/workshop/">Upcoming AI Classes</a>
+        <a href="/#fit">Who It&rsquo;s For</a>
+        <a href="#">Reserve a Seat</a>
+      </nav>
+      <span class="mono-receipt footer-meta">// THE 3D DECISION SYSTEM &middot; &copy; 2026 SYSTEMA AI</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var targets = document.querySelectorAll('.reveal');
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        targets.forEach(function (el) { el.classList.add('in-view'); });
+        return;
+      }
+      document.documentElement.classList.add('js');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) { entry.target.classList.add('in-view'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+      targets.forEach(function (el) { io.observe(el); });
+    })();
+
+    (function () {
+      var nav = document.getElementById('site-nav');
+      if (!nav) return;
+      function onScroll() { nav.classList.toggle('is-scrolled', window.scrollY > 40); }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+
+    /* When hosted as Claude artifacts, each page has its own URL: point cross-page links at them. */
+    (function () {
+      if (!/claude|anthropic|usercontent/i.test(location.hostname)) return;
+      var pages = {
+        '/': 'https://claude.ai/code/artifact/0d681d48-33d2-475b-8ebf-4c95deb06113',
+        '/services/': 'https://claude.ai/code/artifact/f4fab3dc-0a60-4319-bc74-b232d38cf9aa',
+        '/workshop/': 'https://claude.ai/code/artifact/17936373-6c1f-4725-8dba-4ac2d7472405'
+      };
+      document.querySelectorAll('a[href]').forEach(function (a) {
+        var m = a.getAttribute('href').match(/^(\/services\/|\/workshop\/|\/)(#.*)?$/);
+        if (!m || !pages[m[1]]) return;
+        a.setAttribute('href', pages[m[1]] + (m[2] || ''));
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener');
+      });
+    })();
+  </script>
+</body>
+</html>
