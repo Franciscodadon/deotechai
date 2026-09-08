@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deo Tech AI // Meet the Founder</title>
+  <meta name="description" content="Meet the founder of Deo Tech AI: an operator who came into technology to compete and grow in real estate, now helping leaders build clarity, leverage, and freedom with AI.">
+
+  <!-- Icons -->
+  <link rel="icon" href="/favicon-64.png" sizes="64x64" type="image/png">
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#F4F1EA">
+
+  <!-- Social preview -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Deo Tech AI">
+  <meta property="og:title" content="Deo Tech AI // Meet the Founder">
+  <meta property="og:description" content="Meet the founder of Deo Tech AI: an operator who came into technology to compete and grow in real estate, now helping leaders build clarity, leverage, and freedom with AI.">
+  <meta property="og:url" content="https://deotechai.vercel.app/founder/">
+  <meta property="og:image" content="https://deotechai.vercel.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Deo Tech AI logo: Intelligence for a brighter tomorrow">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Deo Tech AI // Meet the Founder">
+  <meta name="twitter:description" content="Meet the founder of Deo Tech AI: an operator who came into technology to compete and grow in real estate, now helping leaders build clarity, leverage, and freedom with AI.">
+  <meta name="twitter:image" content="https://deotechai.vercel.app/og-image.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --alabaster: #F4F1EA; --marble: #E7E2D6; --marble-deep: #DED8C8;
+      --ink-soft: #3B3A34; --ink: #1C1B18;
+      --porphyry: #6E2436; --burgundy: #8C2F3D; --bronze: #9A6B3F;
+      --gold: #B08D45; --gold-bright: #C79A4E; --verdigris: #3E6B5E;
+      --ease-carved: cubic-bezier(0.16, 1, 0.3, 1);
+      --anim-duration: 0.8s;
+      --section-pad-y: clamp(3.5rem, 8vw, 6.5rem);
+      --section-pad-x: clamp(1.25rem, 5vw, 2rem);
+      --nav-h: 76px;
+      --shadow-sm: 0 1px 2px rgba(28,27,24,0.06), 0 2px 6px rgba(28,27,24,0.05);
+      --shadow-md: 0 4px 10px rgba(28,27,24,0.06), 0 12px 28px rgba(28,27,24,0.08);
+      --shadow-lg: 0 10px 24px rgba(28,27,24,0.08), 0 24px 56px rgba(28,27,24,0.12);
+      --shadow-glow: 0 0 0 1px rgba(199,154,78,0.25), 0 8px 30px rgba(122,34,51,0.35);
+      --radius-sm: 10px; --radius-md: 16px; --radius-lg: 22px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+    body {
+      background-color: var(--alabaster); color: var(--ink);
+      font-family: 'Cormorant', Georgia, serif; font-size: 1.15rem; line-height: 1.65;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    ::selection { background: var(--porphyry); color: var(--alabaster); }
+    a { color: inherit; }
+    img, svg { max-width: 100%; display: block; }
+    h1, h2, h3, .heading-cap { font-family: 'Cinzel', Georgia, serif; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; text-wrap: balance; }
+    .mono-receipt { font-family: 'IBM Plex Mono', 'Courier New', monospace; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .quote-voice { font-family: 'Cormorant', Georgia, serif; font-style: italic; }
+    section { padding: var(--section-pad-y) var(--section-pad-x); width: 100%; display: flex; justify-content: center; align-items: center; }
+    .container { max-width: 1080px; width: 100%; }
+    .surface-light { background-color: var(--alabaster); color: var(--ink); }
+    .surface-marble { background-color: var(--marble); color: var(--ink); }
+    .surface-light .mono-receipt, .surface-marble .mono-receipt { color: var(--porphyry); }
+    .surface-light p, .surface-marble p { color: var(--ink-soft); }
+
+    /* Nav */
+    #cta { scroll-margin-top: var(--nav-h); }
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: transparent; border-bottom: 1px solid transparent;
+      transition: background-color 0.4s var(--ease-carved), border-color 0.4s var(--ease-carved), box-shadow 0.4s var(--ease-carved); }
+    .site-nav.is-scrolled { background: rgba(244,241,234,0.86); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(176,141,69,0.35); box-shadow: 0 8px 24px rgba(28,27,24,0.08); }
+    .site-nav-inner { max-width: 1080px; margin: 0 auto; padding: 0 clamp(1.25rem, 5vw, 2rem); height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+    .site-nav-logo { font-family: 'Cinzel', Georgia, serif; font-weight: 700; letter-spacing: 0.15em; font-size: 1.1rem; color: var(--ink);
+      text-decoration: none; flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.6rem; }
+    .site-nav-logo img { height: 46px; width: auto; flex-shrink: 0; }
+    .site-nav-links { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2rem); flex: 1; justify-content: center; }
+    .site-nav-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--ink-soft); text-decoration: none; position: relative; padding: 0.4rem 0; transition: color 0.3s var(--ease-carved); white-space: nowrap; }
+    .site-nav-links a::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 1px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease-carved); }
+    .site-nav-links a:hover, .site-nav-links a[aria-current="page"] { color: var(--porphyry); }
+    .site-nav-links a:hover::after, .site-nav-links a[aria-current="page"]::after { transform: scaleX(1); }
+    .site-nav-links a.is-featured::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--gold-bright); margin-right: 0.5rem; vertical-align: middle; box-shadow: 0 0 6px 1px rgba(199,154,78,0.6); }
+    .site-nav-cta { display: inline-flex; align-items: center; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--ink);
+      background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 100%); padding: 0.65rem 1.25rem; border-radius: 999px; white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(122,34,51,0.3); transition: transform 0.3s var(--ease-carved), box-shadow 0.3s var(--ease-carved), filter 0.3s var(--ease-carved); }
+    .site-nav-cta:hover { transform: translateY(-2px); filter: brightness(1.06); box-shadow: 0 8px 20px rgba(122,34,51,0.4); }
+    .site-nav-cta .long { display: inline; } .site-nav-cta .short { display: none; }
+
+    /* Button */
+    .btn-systema { display: inline-flex; align-items: center; gap: 0.65rem; background: linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 100%);
+      color: var(--ink); font-family: 'IBM Plex Mono', monospace; font-weight: 500; font-size: 0.9rem; text-decoration: none; padding: 1.15rem 2.25rem;
+      text-transform: uppercase; letter-spacing: 0.1em; border-radius: 999px; box-shadow: var(--shadow-glow);
+      transition: transform 0.3s var(--ease-carved), box-shadow 0.3s var(--ease-carved), filter 0.3s var(--ease-carved); max-width: 100%; }
+    .btn-systema .btn-arrow { transition: transform 0.3s var(--ease-carved); }
+    .btn-systema:hover { transform: translateY(-3px); filter: brightness(1.06); box-shadow: 0 0 0 1px rgba(199,154,78,0.4), 0 14px 36px rgba(122,34,51,0.45); }
+    .btn-systema:hover .btn-arrow { transform: translateX(4px); }
+    .btn-systema:active { transform: translateY(-1px) scale(0.98); }
+    .btn-systema:focus-visible, .site-nav-cta:focus-visible, .site-nav-links a:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 3px; }
+
+    /* Page header (marble terrace, washed) */
+    .surface-glow { background: radial-gradient(120% 150% at 84% 14%, #FFFFFF 0%, var(--alabaster) 30%, var(--marble) 62%, var(--marble-deep) 100%);
+      position: relative; overflow: hidden; padding-top: calc(var(--section-pad-y) + var(--nav-h)); padding-bottom: clamp(2.5rem, 5vw, 4rem); isolation: isolate; }
+    .surface-glow::before { content: ""; position: absolute; inset: 0; z-index: -1;
+      background: url("/hero-bg-light.jpg") center 40% / cover no-repeat; opacity: 0.55; }
+    .surface-glow::after { content: ""; position: absolute; inset: 0; z-index: -1;
+      background: linear-gradient(180deg, rgba(244,241,234,0.55) 0%, rgba(244,241,234,0.35) 60%, var(--alabaster) 100%); pointer-events: none; }
+    .page-head { position: relative; z-index: 1; max-width: 820px; text-align: center; margin: 0 auto; }
+    .page-eyebrow { color: var(--porphyry); margin-bottom: 1.25rem; display: block; animation: fadeRise var(--anim-duration) var(--ease-carved) forwards; }
+    .page-title { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.12; color: var(--ink); margin-bottom: 1rem;
+      animation: wipeLeft var(--anim-duration) var(--ease-carved) 120ms forwards; opacity: 0; }
+    .page-sub { font-size: clamp(1.1rem, 2.4vw, 1.35rem); color: var(--porphyry);
+      animation: fadeRise var(--anim-duration) var(--ease-carved) 200ms forwards; opacity: 0; }
+
+    /* Story */
+    .founder-grid { display: grid; grid-template-columns: minmax(260px, 400px) 1fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: start; }
+    .founder-figure { position: sticky; top: calc(var(--nav-h) + 1.5rem); margin: 0; }
+    .founder-frame { border-radius: 999px 999px var(--radius-lg) var(--radius-lg); overflow: hidden;
+      background: url("/logo-mark.png") center 42% / 38% auto no-repeat, radial-gradient(circle at 40% 30%, #FFFFFF 0%, var(--alabaster) 45%, var(--marble-deep) 100%);
+      border: 1px solid rgba(176,141,69,0.45); box-shadow: var(--shadow-lg), 0 0 0 8px var(--alabaster), 0 0 0 9px rgba(176,141,69,0.35); aspect-ratio: 2 / 3; }
+    .founder-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .founder-figure figcaption { display: block; text-align: center; margin-top: 1.4rem; }
+    .founder-copy { max-width: 66ch; }
+    .founder-copy p { font-size: clamp(1.1rem, 2.2vw, 1.25rem); }
+    .founder-copy p + p { margin-top: 1.1rem; }
+    .founder-copy p:first-of-type::first-letter { font-family: 'Cinzel', Georgia, serif; font-size: 3.1em; float: left; line-height: 0.85; padding: 0.08em 0.12em 0 0; color: var(--porphyry); }
+    .founder-belief { margin: 1.75rem 0; padding: 1.25rem 1.5rem; border-left: 3px solid var(--gold); background: rgba(255,255,255,0.6);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0; color: var(--porphyry); font-size: clamp(1.15rem, 2.4vw, 1.4rem); line-height: 1.5; }
+    .founder-values { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.75rem; }
+    .founder-values span { font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--porphyry); background: #FFFFFF; border: 1px solid rgba(110,36,54,0.2); border-radius: 999px; padding: 0.45rem 0.85rem; }
+
+    /* CTA */
+    .surface-glow-low { background: radial-gradient(120% 150% at 16% 86%, rgba(110,36,54,0.2) 0%, rgba(110,36,54,0.07) 38%, rgba(110,36,54,0) 100%), var(--marble);
+      text-align: center; position: relative; overflow: hidden; }
+    .cta-container { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+    .cta-eyebrow { color: var(--porphyry); margin-bottom: 1rem; display: block; }
+    .cta-title { font-size: clamp(1.6rem, 4.5vw, 2.4rem); line-height: 1.2; margin-bottom: 1.5rem; color: var(--ink); }
+    .cta-body { color: var(--ink-soft); margin-bottom: 2.5rem; font-size: clamp(1.05rem, 2.2vw, 1.2rem); }
+    .cta-footer-receipt { margin-top: 2rem; color: var(--porphyry); display: block; }
+
+    /* Footer */
+    .site-footer { background: var(--marble-deep); border-top: 1px solid rgba(176,141,69,0.45); padding: 2.5rem var(--section-pad-x); }
+    .footer-inner { max-width: 1080px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.25rem 2rem; }
+    .footer-brand { display: flex; flex-direction: column; gap: 0.35rem; }
+    .footer-brand .site-nav-logo { font-size: 1rem; }
+    .footer-brand p { color: var(--ink-soft); font-style: italic; font-size: 1rem; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+    .footer-links a { font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); text-decoration: none; }
+    .footer-links a:hover { color: var(--porphyry); }
+    .footer-meta { color: var(--porphyry); font-size: 0.7rem; }
+
+    /* Reveal + keyframes */
+    .js .reveal { opacity: 0; }
+    .js .reveal.in-view.reveal-fade { animation: fadeRise var(--anim-duration) var(--ease-carved) forwards; }
+    .js .reveal.in-view.reveal-wipe { animation: wipeLeft var(--anim-duration) var(--ease-carved) forwards; }
+    .js .reveal.in-view.delay-1 { animation-delay: 0.1s; }
+    .js .reveal.in-view.delay-2 { animation-delay: 0.2s; }
+    .js .reveal.in-view.delay-3 { animation-delay: 0.3s; }
+    @keyframes fadeRise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes wipeLeft { from { opacity: 0; clip-path: inset(0 100% 0 0); } to { opacity: 1; clip-path: inset(0 0 0 0); } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .page-eyebrow, .page-title, .page-sub, .reveal { animation: none !important; opacity: 1 !important; clip-path: none !important; transform: none !important; }
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .site-nav-logo { font-size: 0.95rem; letter-spacing: 0.1em; }
+      .site-nav-logo img { height: 38px; }
+      .site-nav-links { gap: 0.9rem; }
+      .site-nav-links a { font-size: 0.68rem; letter-spacing: 0.05em; }
+    }
+    @media (max-width: 860px) {
+      .founder-grid { grid-template-columns: 1fr; }
+      .founder-figure { position: static; max-width: 320px; margin: 0 auto 1.5rem; }
+      .founder-copy { max-width: none; }
+    }
+    @media (max-width: 720px) {
+      .site-nav-links { display: none; }
+      .site-nav-cta .long { display: none; } .site-nav-cta .short { display: inline; }
+    }
+    @media (max-width: 640px) {
+      body { font-size: 1.05rem; }
+      .btn-systema { width: 100%; justify-content: center; padding: 1.05rem 1.5rem; }
+    }
+    @media (max-width: 380px) { .mono-receipt { font-size: 0.7rem; letter-spacing: 0.06em; } }
+  </style>
+</head>
+<body>
+
+  <header class="site-nav" id="site-nav">
+    <div class="site-nav-inner">
+      <a href="/" class="site-nav-logo">
+        <img class="logo-mark" src="/logo-mark.png" alt="" width="400" height="386" decoding="async">
+        DEO TECH AI
+      </a>
+      <nav class="site-nav-links">
+        <a href="/">The System</a>
+        <a href="/services/">Services</a>
+        <a href="/workshop/" class="is-featured">Upcoming AI Classes</a>
+        <a href="/founder/" aria-current="page">About the Founder</a>
+      </nav>
+      <a href="#cta" class="site-nav-cta"><span class="long">Book a Strategy Call</span><span class="short">Book a Call</span></a>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section class="surface-glow">
+    <div class="container page-head">
+      <span class="mono-receipt page-eyebrow">// FOUNDER OF DEO TECH AI</span>
+      <h1 class="page-title">Meet the Founder</h1>
+      <p class="page-sub quote-voice">An operator first. Technology came second, because the business needed it.</p>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section class="surface-light">
+    <div class="container founder-grid">
+      <figure class="founder-figure reveal reveal-fade">
+        <div class="founder-frame">
+          <img src="/founder.jpg" alt="Founder of Deo Tech AI" width="1400" height="2100" decoding="async" onerror="this.remove()">
+        </div>
+        <figcaption class="mono-receipt">// FOUNDER OF DEO TECH AI</figcaption>
+      </figure>
+
+      <div class="founder-copy">
+        <p class="reveal reveal-fade">I did not come from a technical background. I came into technology because I needed better systems to compete and grow in real estate. That curiosity turned into a strength for spotting friction, connecting workflows, and simplifying complex processes. After helping others improve their CRM, follow-up, and automation, I realized the bigger opportunity was not just using technology better, but helping business owners understand what is working, what is not, and where to focus next.</p>
+
+        <blockquote class="founder-belief quote-voice reveal reveal-fade delay-1">Technology should create clarity, leverage, and freedom, not more complexity.</blockquote>
+
+        <p class="reveal reveal-fade delay-1">Today, I am building Deo Tech AI around a simple belief: technology should create clarity, leverage, and freedom, not more complexity. I approach AI from the perspective of an operator and business owner, with a focus on customer journeys, KPIs, payments, and the places where automation can improve performance without removing the human touch. My goal is to help leaders make better decisions, build stronger systems, and spend more time working on the business instead of inside it.</p>
+
+        <p class="reveal reveal-fade delay-2">That mission is personal. I was named after my grandfather, an entrepreneur and restaurant owner in Honduras, and I have always believed entrepreneurship is about building something that can outlast you. Deo Tech AI is being built to help founders, young entrepreneurs, and organizations develop the AI fluency and operating intelligence they need to create lasting impact, more freedom, and a legacy their families can be proud of.</p>
+
+        <div class="founder-values reveal reveal-fade delay-3" aria-label="What the work is built around">
+          <span>Clarity</span><span>Leverage</span><span>Freedom</span><span>Legacy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="surface-glow-low" id="cta">
+    <div class="container cta-container">
+      <span class="mono-receipt cta-eyebrow reveal reveal-fade">// LET&rsquo;S TALK</span>
+      <h2 class="cta-title reveal reveal-wipe">Ready to build intelligent operations you actually own?</h2>
+      <p class="cta-body reveal reveal-fade delay-1">If your business is growing but your systems are getting messy, it is time to stop guessing and start operating from the numbers that make money.</p>
+      <!-- Replace href with your booking link -->
+      <a href="#" class="btn-systema reveal reveal-fade delay-2">Book a Strategy Call <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
+      <span class="mono-receipt cta-footer-receipt reveal reveal-fade delay-3">// DATA &middot; DECISIONS &middot; DOLLARS</span>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="site-nav-logo">
+          <img class="logo-mark" src="/logo-mark.png" alt="" width="400" height="386" decoding="async">
+          DEO TECH AI
+        </a>
+        <p>Intelligent operations you actually own.</p>
+      </div>
+      <nav class="footer-links">
+        <a href="/">The System</a>
+        <a href="/services/">Services</a>
+        <a href="/workshop/">Upcoming AI Classes</a>
+        <a href="/founder/">About the Founder</a>
+        <a href="#cta">Book a Call</a>
+      </nav>
+      <span class="mono-receipt footer-meta">// THE 3D DECISION SYSTEM &middot; &copy; 2026 DEO TECH AI</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var targets = document.querySelectorAll('.reveal');
+      if (reduceMotion || !('IntersectionObserver' in window)) { targets.forEach(function (el) { el.classList.add('in-view'); }); return; }
+      document.documentElement.classList.add('js');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { if (entry.isIntersecting) { entry.target.classList.add('in-view'); io.unobserve(entry.target); } });
+      }, { threshold: 0.15, rootMargin: '0px 0px -5% 0px' });
+      targets.forEach(function (el) { io.observe(el); });
+    })();
+    (function () {
+      var nav = document.getElementById('site-nav'); if (!nav) return;
+      function onScroll() { nav.classList.toggle('is-scrolled', window.scrollY > 40); }
+      onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
+</body>
+</html>
