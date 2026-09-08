@@ -317,49 +317,6 @@
       pointer-events: none;
     }
 
-    /* Meet the Founder */
-    #founder { scroll-margin-top: var(--nav-h); }
-    .founder-grid {
-      display: grid;
-      grid-template-columns: minmax(260px, 380px) 1fr;
-      gap: clamp(2rem, 5vw, 4.5rem);
-      align-items: center;
-    }
-    .founder-figure { margin: 0; }
-    .founder-frame {
-      border-radius: 999px 999px var(--radius-lg) var(--radius-lg);
-      overflow: hidden;
-      /* marble + mark shows until the portrait file is in place */
-      background: url("/logo-mark.png") center 42% / 38% auto no-repeat,
-                  radial-gradient(circle at 40% 30%, #FFFFFF 0%, var(--alabaster) 45%, var(--marble-deep) 100%);
-      border: 1px solid rgba(176,141,69,0.45);
-      box-shadow: var(--shadow-lg), 0 0 0 8px var(--alabaster), 0 0 0 9px rgba(176,141,69,0.35);
-      aspect-ratio: 2 / 3;
-    }
-    .founder-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
-    .founder-figure figcaption { display: block; text-align: center; margin-top: 1.4rem; }
-    .founder-copy { max-width: 66ch; }
-    .founder-copy > .mono-receipt { display: block; margin-bottom: 1rem; }
-    .founder-copy h2 { font-size: clamp(1.6rem, 4vw, 2.3rem); line-height: 1.2; margin-bottom: 1.25rem; }
-    .founder-copy p { font-size: clamp(1.05rem, 2.1vw, 1.2rem); }
-    .founder-copy p + p { margin-top: 1rem; }
-    .founder-copy .btn-systema { margin-top: 1.75rem; }
-    .founder-quote {
-      margin: 1.5rem 0;
-      padding: 1.25rem 1.5rem;
-      border-left: 3px solid var(--gold);
-      background: rgba(255,255,255,0.55);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      color: var(--porphyry);
-      font-size: clamp(1.15rem, 2.4vw, 1.35rem);
-      line-height: 1.5;
-    }
-    @media (max-width: 860px) {
-      .founder-grid { grid-template-columns: 1fr; }
-      .founder-figure { position: static; max-width: 320px; margin: 0 auto 1.5rem; }
-      .founder-copy { max-width: none; }
-    }
-
     /* Positioning section: marble study scene behind the copy */
     #positioning {
       position: relative;
@@ -1827,25 +1784,6 @@
       <p class="roman-body reveal reveal-fade delay-1">AI is powerful, but only when it is connected to the right business problem.</p>
       <p class="roman-body reveal reveal-fade delay-2">The goal is not to use AI just because it is trendy. The goal is to use AI to save time, improve follow-up, reduce manual work, strengthen decisions, and help the business operate with more clarity.</p>
       <span class="mono-receipt roman-byline reveal reveal-fade delay-3">// AI DOES NOT REPLACE CLEAR THINKING. IT REWARDS IT.</span>
-    </div>
-  </section>
-
-  <!-- SECTION 8.5: MEET THE FOUNDER (teaser) -->
-  <section class="surface-marble" id="founder">
-    <div class="container founder-grid">
-      <figure class="founder-figure reveal reveal-fade">
-        <div class="founder-frame">
-          <img src="/founder.jpg" alt="Founder of Deo Tech AI" width="1400" height="2100" loading="lazy" decoding="async" onerror="this.remove()">
-        </div>
-        <figcaption class="mono-receipt">// FOUNDER OF DEO TECH AI</figcaption>
-      </figure>
-      <div class="founder-copy">
-        <span class="mono-receipt reveal reveal-fade">// MEET THE FOUNDER</span>
-        <h2 class="reveal reveal-wipe">An operator first. Technology came second.</h2>
-        <p class="reveal reveal-fade delay-1">I did not come from a technical background. I came into technology because I needed better systems to compete and grow in real estate. That curiosity turned into a strength for spotting friction, connecting workflows, and simplifying complex processes.</p>
-        <p class="reveal reveal-fade delay-2">Today, I am building Deo Tech AI around a simple belief: technology should create clarity, leverage, and freedom, not more complexity.</p>
-        <a href="/founder/" class="btn-systema reveal reveal-fade delay-3">Read the Founder&rsquo;s Story <span class="btn-arrow" aria-hidden="true">&rarr;</span></a>
-      </div>
     </div>
   </section>
 
