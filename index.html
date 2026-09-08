@@ -336,8 +336,10 @@
     }
     #positioning > .container { position: relative; z-index: 1; }
     @media (max-width: 960px) {
-      #positioning { background-image: url("/positioning-bg-mobile.jpg"); }
-      #positioning::before { background: rgba(244,241,234,0.86); }
+      #positioning { background: url("/positioning-bg-mobile.jpg") 70% center / cover no-repeat, var(--marble); }
+      #positioning::before {
+        background: linear-gradient(180deg, rgba(244,241,234,0.72) 0%, rgba(244,241,234,0.80) 55%, rgba(244,241,234,0.90) 100%);
+      }
     }
 
     /* Homepage hero: marble terrace scene, washed on the left so the copy stays legible.
