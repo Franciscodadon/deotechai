@@ -1291,11 +1291,10 @@
     }
 
     /* 3D Decision System: header rule + arch cards */
-    .system-head { margin-bottom: clamp(1.5rem, 3vw, 2rem); align-items: center; }
-    .seal { width: clamp(160px, 18vw, 220px); }
-    .dds-rule { height: 1px; background: var(--gold); opacity: 0.8; margin-bottom: clamp(1.75rem, 4vw, 2.75rem); }
+    .system-head { margin-bottom: 0.75rem; align-items: center; }
+    .seal { width: clamp(120px, 13vw, 165px); filter: drop-shadow(0 6px 12px rgba(28,27,24,0.12)); }
+    .dds-rule { height: 1px; background: var(--gold); opacity: 0.7; margin-bottom: clamp(1.5rem, 3vw, 2rem); }
     .dds-grid {
-      position: relative;
       display: grid;
       grid-template-columns: 1fr auto 1fr auto 1fr;
       gap: 0.75rem;
@@ -1305,52 +1304,56 @@
       position: relative;
       background: var(--alabaster);
       border: 1.5px solid var(--gold);
-      padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2.5rem) clamp(2rem, 4vw, 2.75rem);
+      padding: 4.5rem 3.25rem 3.25rem;
       color: var(--ink);
-      min-height: 380px;
+      min-height: 400px;
       display: flex;
       flex-direction: column;
       overflow: hidden;
       transition: transform 0.4s var(--ease-carved), box-shadow 0.4s var(--ease-carved);
     }
-    .dds-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .dds-card.is-accent { background: var(--porphyry); color: var(--alabaster); border-color: var(--gold-bright); }
-    .dds-arch { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--gold); opacity: 0.55; pointer-events: none; }
-    .dds-card.is-accent .dds-arch { color: var(--gold-bright); opacity: 0.6; }
-    .dds-card > *:not(.dds-arch) { position: relative; z-index: 1; }
-    .dds-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem); }
-    .dds-num { font-family: 'Cormorant', Georgia, serif; font-weight: 400; font-size: clamp(3.6rem, 6.5vw, 5rem); line-height: 0.9; color: var(--gold); }
+    .dds-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .dds-card.is-accent { background: var(--porphyry); color: var(--alabaster); border-color: var(--gold-bright); box-shadow: var(--shadow-sm); }
+    .dds-cols, .dds-arch { position: absolute; left: 0; width: 100%; color: var(--gold); opacity: 0.32; pointer-events: none; }
+    .dds-cols { top: 0; height: 100%; }
+    .dds-arch { top: 0; height: 150px; }
+    .dds-card.is-accent .dds-cols, .dds-card.is-accent .dds-arch { color: var(--gold-bright); opacity: 0.4; }
+    .dds-card > *:not(.dds-cols):not(.dds-arch) { position: relative; z-index: 1; }
+    .dds-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 72px; margin-bottom: 1.75rem; }
+    .dds-num { font-family: 'Cormorant', Georgia, serif; font-weight: 400; font-size: clamp(3.4rem, 5.5vw, 4.5rem); line-height: 1; color: var(--gold); }
     .dds-card.is-accent .dds-num { color: var(--alabaster); }
-    .dds-icon { width: 60px; height: 60px; border-radius: 50%; border: 1.5px solid var(--gold); display: inline-flex; align-items: center; justify-content: center; color: var(--porphyry); flex-shrink: 0; }
-    .dds-icon svg { width: 24px; height: 24px; }
-    .dds-card.is-accent .dds-icon { border-color: var(--gold-bright); color: var(--alabaster); }
-    .dds-label { display: block; padding-bottom: 0.75rem; margin-bottom: 1.1rem; border-bottom: 1px solid rgba(176,141,69,0.7); color: var(--ink-soft); }
+    .dds-icon { width: 64px; height: 64px; border-radius: 50%; border: 1.5px solid var(--gold); display: inline-flex; align-items: center; justify-content: center; color: var(--porphyry); flex-shrink: 0; background: rgba(255,255,255,0.35); }
+    .dds-icon svg { width: 30px; height: 30px; }
+    .dds-card.is-accent .dds-icon { border-color: var(--gold-bright); color: var(--alabaster); background: rgba(255,255,255,0.06); }
+    .dds-label { display: block; padding-bottom: 0.7rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(176,141,69,0.6); color: var(--ink-soft); white-space: nowrap; }
     .dds-card.is-accent .dds-label { color: var(--alabaster); border-bottom-color: rgba(199,154,78,0.6); }
-    .dds-card h3 { font-size: clamp(1.5rem, 2.8vw, 2.1rem); line-height: 1.1; color: inherit; }
-    .dds-dash { display: block; width: 44px; height: 2px; background: var(--gold); margin: 0.9rem 0 1.1rem; }
+    .dds-card h3 { font-size: clamp(1.45rem, 2.4vw, 1.9rem); line-height: 1.1; color: inherit; }
+    .dds-dash { display: block; width: 40px; height: 2px; background: var(--gold); margin: 0.75rem 0 0.85rem; }
     .dds-card.is-accent .dds-dash { background: var(--gold-bright); }
-    .dds-card p { font-size: 1.15rem; color: var(--ink-soft); margin-top: auto; }
+    .dds-card p { font-size: 1.15rem; line-height: 1.5; color: var(--ink-soft); margin: 0; }
     .dds-card.is-accent p { color: var(--alabaster); }
     .dds-arrow {
       align-self: center;
-      width: 52px; height: 52px; border-radius: 50%;
+      width: 44px; height: 44px; border-radius: 50%;
       background: var(--gold);
       color: var(--alabaster);
       display: inline-flex; align-items: center; justify-content: center;
-      margin: 0 -1.5rem;
-      position: relative; z-index: 2;
-      box-shadow: var(--shadow-md);
+      box-shadow: var(--shadow-sm);
     }
-    .dds-arrow svg { width: 22px; height: 22px; }
-    .section-head.dds-close { margin: clamp(2.25rem, 5vw, 3.25rem) auto 0; }
+    .dds-arrow svg { width: 20px; height: 20px; }
+    .section-head.dds-close { margin: clamp(2.25rem, 5vw, 3rem) auto 0; }
     .dds-close p { font-size: clamp(1.1rem, 2.2vw, 1.3rem); }
     .dds-divider { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-top: 1.75rem; }
     .dds-divider::before, .dds-divider::after { content: ""; width: 44px; height: 1px; background: var(--gold); }
     .dds-divider i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); }
+    @media (max-width: 1000px) and (min-width: 901px) {
+      .dds-card { padding: 4rem 2.75rem 2.75rem; }
+      .dds-icon { width: 56px; height: 56px; } .dds-icon svg { width: 26px; height: 26px; }
+    }
     @media (max-width: 900px) {
-      .dds-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-      .dds-arrow { margin: -1.9rem auto; transform: rotate(90deg); }
-      .dds-card { min-height: 0; }
+      .dds-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .dds-arrow { margin: 0 auto; transform: rotate(90deg); }
+      .dds-card { min-height: 0; padding: 4.25rem 3.25rem 3rem; }
     }
 
     /* Mobile menu */
@@ -1575,13 +1578,6 @@
 
   <!-- SECTION 3: THE 3D DECISION SYSTEM -->
   <section class="surface-roman" id="system">
-    <div class="roman-columns roman-columns-left" aria-hidden="true">
-      <svg viewBox="0 0 60 420" preserveAspectRatio="xMidYMax meet"><use href="#roman-column"/></svg>
-    </div>
-    <div class="roman-columns roman-columns-right" aria-hidden="true">
-      <svg viewBox="0 0 60 420" preserveAspectRatio="xMidYMax meet"><use href="#roman-column"/></svg>
-    </div>
-
     <div class="container">
       <div class="system-head">
         <div class="section-head">
@@ -1642,17 +1638,23 @@
 
       <div class="dds-grid">
         <article class="dds-card reveal reveal-fade">
-          <svg class="dds-arch" viewBox="0 0 300 330" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M46,330 V150 A104,104 0 0 1 254,150 V330" fill="none" stroke="currentColor" stroke-width="1.4"/>
-            <path d="M62,330 V158 A88,88 0 0 1 238,158 V330" fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.6"/>
-            <g fill="none" stroke="currentColor" stroke-width="1.2">
-              <rect x="14" y="150" width="30" height="180"/><line x1="24" y1="160" x2="24" y2="330"/><line x1="34" y1="160" x2="34" y2="330"/><rect x="10" y="142" width="38" height="8"/>
-              <rect x="256" y="150" width="30" height="180"/><line x1="266" y1="160" x2="266" y2="330"/><line x1="276" y1="160" x2="276" y2="330"/><rect x="252" y="142" width="38" height="8"/>
+          <svg class="dds-cols" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.1" vector-effect="non-scaling-stroke">
+              <rect x="10" y="188" width="34" height="9"/><rect x="16" y="197" width="22" height="158"/>
+              <line x1="22" y1="204" x2="22" y2="348"/><line x1="27" y1="204" x2="27" y2="348"/><line x1="32" y1="204" x2="32" y2="348"/>
+              <rect x="13" y="355" width="28" height="8"/><rect x="8" y="363" width="38" height="9"/>
+              <rect x="256" y="188" width="34" height="9"/><rect x="262" y="197" width="22" height="158"/>
+              <line x1="268" y1="204" x2="268" y2="348"/><line x1="273" y1="204" x2="273" y2="348"/><line x1="278" y1="204" x2="278" y2="348"/>
+              <rect x="259" y="355" width="28" height="8"/><rect x="254" y="363" width="38" height="9"/>
             </g>
+          </svg>
+          <svg class="dds-arch" viewBox="0 0 300 160" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M38,160 V140 A112,112 0 0 1 262,140 V160" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+            <path d="M52,160 V142 A98,98 0 0 1 248,142 V160" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.6" vector-effect="non-scaling-stroke"/>
           </svg>
           <div class="dds-top">
             <span class="dds-num">01</span>
-            <span class="dds-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 20V10M12 20V4M20 20v-7"/></svg></span>
+            <span class="dds-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 20V11M12 20V4M19 20v-6"/></svg></span>
           </div>
           <span class="mono-receipt dds-label">// 01 DATA</span>
           <h3>Data</h3>
@@ -1663,17 +1665,23 @@
         <span class="dds-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
 
         <article class="dds-card reveal reveal-fade delay-1">
-          <svg class="dds-arch" viewBox="0 0 300 330" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M46,330 V150 A104,104 0 0 1 254,150 V330" fill="none" stroke="currentColor" stroke-width="1.4"/>
-            <path d="M62,330 V158 A88,88 0 0 1 238,158 V330" fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.6"/>
-            <g fill="none" stroke="currentColor" stroke-width="1.2">
-              <rect x="14" y="150" width="30" height="180"/><line x1="24" y1="160" x2="24" y2="330"/><line x1="34" y1="160" x2="34" y2="330"/><rect x="10" y="142" width="38" height="8"/>
-              <rect x="256" y="150" width="30" height="180"/><line x1="266" y1="160" x2="266" y2="330"/><line x1="276" y1="160" x2="276" y2="330"/><rect x="252" y="142" width="38" height="8"/>
+          <svg class="dds-cols" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.1" vector-effect="non-scaling-stroke">
+              <rect x="10" y="188" width="34" height="9"/><rect x="16" y="197" width="22" height="158"/>
+              <line x1="22" y1="204" x2="22" y2="348"/><line x1="27" y1="204" x2="27" y2="348"/><line x1="32" y1="204" x2="32" y2="348"/>
+              <rect x="13" y="355" width="28" height="8"/><rect x="8" y="363" width="38" height="9"/>
+              <rect x="256" y="188" width="34" height="9"/><rect x="262" y="197" width="22" height="158"/>
+              <line x1="268" y1="204" x2="268" y2="348"/><line x1="273" y1="204" x2="273" y2="348"/><line x1="278" y1="204" x2="278" y2="348"/>
+              <rect x="259" y="355" width="28" height="8"/><rect x="254" y="363" width="38" height="9"/>
             </g>
+          </svg>
+          <svg class="dds-arch" viewBox="0 0 300 160" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M38,160 V140 A112,112 0 0 1 262,140 V160" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+            <path d="M52,160 V142 A98,98 0 0 1 248,142 V160" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.6" vector-effect="non-scaling-stroke"/>
           </svg>
           <div class="dds-top">
             <span class="dds-num">02</span>
-            <span class="dds-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 9-2 6-4 2 2-6z"/></svg></span>
+            <span class="dds-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.5"/><path d="m16 8-2.5 6.5L7 16l2.5-6.5z" fill="currentColor" fill-opacity="0.18"/></svg></span>
           </div>
           <span class="mono-receipt dds-label">// 02 DECISIONS</span>
           <h3>Decisions</h3>
@@ -1684,17 +1692,23 @@
         <span class="dds-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
 
         <article class="dds-card is-accent reveal reveal-fade delay-2">
-          <svg class="dds-arch" viewBox="0 0 300 330" preserveAspectRatio="none" aria-hidden="true">
-            <path d="M46,330 V150 A104,104 0 0 1 254,150 V330" fill="none" stroke="currentColor" stroke-width="1.4"/>
-            <path d="M62,330 V158 A88,88 0 0 1 238,158 V330" fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.6"/>
-            <g fill="none" stroke="currentColor" stroke-width="1.2">
-              <rect x="14" y="150" width="30" height="180"/><line x1="24" y1="160" x2="24" y2="330"/><line x1="34" y1="160" x2="34" y2="330"/><rect x="10" y="142" width="38" height="8"/>
-              <rect x="256" y="150" width="30" height="180"/><line x1="266" y1="160" x2="266" y2="330"/><line x1="276" y1="160" x2="276" y2="330"/><rect x="252" y="142" width="38" height="8"/>
+          <svg class="dds-cols" viewBox="0 0 300 400" preserveAspectRatio="none" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.1" vector-effect="non-scaling-stroke">
+              <rect x="10" y="188" width="34" height="9"/><rect x="16" y="197" width="22" height="158"/>
+              <line x1="22" y1="204" x2="22" y2="348"/><line x1="27" y1="204" x2="27" y2="348"/><line x1="32" y1="204" x2="32" y2="348"/>
+              <rect x="13" y="355" width="28" height="8"/><rect x="8" y="363" width="38" height="9"/>
+              <rect x="256" y="188" width="34" height="9"/><rect x="262" y="197" width="22" height="158"/>
+              <line x1="268" y1="204" x2="268" y2="348"/><line x1="273" y1="204" x2="273" y2="348"/><line x1="278" y1="204" x2="278" y2="348"/>
+              <rect x="259" y="355" width="28" height="8"/><rect x="254" y="363" width="38" height="9"/>
             </g>
+          </svg>
+          <svg class="dds-arch" viewBox="0 0 300 160" preserveAspectRatio="none" aria-hidden="true">
+            <path d="M38,160 V140 A112,112 0 0 1 262,140 V160" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"/>
+            <path d="M52,160 V142 A98,98 0 0 1 248,142 V160" fill="none" stroke="currentColor" stroke-width="0.8" opacity="0.6" vector-effect="non-scaling-stroke"/>
           </svg>
           <div class="dds-top">
             <span class="dds-num">03</span>
-            <span class="dds-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M15 8.2H10.6a2 2 0 0 0 0 4h2.8a2 2 0 0 1 0 4H9"/></svg></span>
+            <span class="dds-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5v19"/><path d="M16.5 6.8H10a3.2 3.2 0 0 0 0 6.4h4a3.2 3.2 0 0 1 0 6.4H7"/></svg></span>
           </div>
           <span class="mono-receipt dds-label">// 03 DOLLARS</span>
           <h3>Dollars</h3>
