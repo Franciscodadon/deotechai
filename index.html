@@ -1386,6 +1386,66 @@
       #system::before { opacity: 0.6; }
     }
 
+    /* AI that takes action */
+    #ai-action { position: relative; overflow: hidden; background: #F7F3EB; padding-bottom: clamp(3rem, 6vw, 4.5rem); display: block; }
+    #ai-action > .container { position: relative; z-index: 1; max-width: 1340px; margin: 0 auto; }
+    #ai-action::before {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(55% 60% at 100% 100%, rgba(199,154,78,0.20), rgba(199,154,78,0) 70%);
+    }
+    #ai-action::after {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.28;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.45 0 0 0 0 0.25 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .aia-bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .aia-bg i, .aia-bg b { position: absolute; }
+    .aia-arc { width: 980px; height: 980px; right: -560px; top: -520px; border-radius: 50%; border: 1px solid rgba(176,141,69,0.42); }
+    .aia-line { background: rgba(176,141,69,0.32); }
+    .aia-line-h1 { right: 0; top: 7.5%; width: 9%; height: 1px; }
+    .aia-line-h2 { right: 0; top: 21%; width: 5.5%; height: 1px; }
+    .aia-line-v1 { right: 13.8%; top: 0; width: 1px; height: 26%; }
+    .aia-line-v2 { right: 6.5%; top: 0; width: 1px; height: 12%; }
+    .aia-path { border: 1px solid rgba(176,141,69,0.34); }
+    .aia-path-1 { left: 2.1%; top: 50%; width: 1px; height: 50%; border-width: 0 0 0 1px; }
+    .aia-path-2 { left: 2.1%; top: 92%; width: 7.3%; height: 1px; border-width: 1px 0 0 0; }
+    .aia-path-3 { left: 5.2%; top: 84%; width: 4.2%; height: 16%; border-width: 1px 1px 0 0; }
+    .aia-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); transform: translate(-50%, -50%); }
+    .aia-grid { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
+    .aia-copy .mono-receipt { display: block; color: var(--porphyry); margin-bottom: 1.25rem; }
+    .aia-copy h2 { font-size: clamp(1.9rem, 3.6vw, 3rem); line-height: 1.12; color: var(--ink); margin-bottom: 1.5rem; }
+    .aia-copy h2 em { font-style: normal; color: var(--porphyry); }
+    .aia-copy p { font-size: clamp(1.1rem, 1.9vw, 1.35rem); color: var(--ink-soft); max-width: 34ch; }
+    .aia-panel {
+      background: var(--alabaster);
+      border: 1px solid rgba(176,141,69,0.55);
+      border-radius: 14px;
+      padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
+      box-shadow: 0 6px 18px rgba(28,27,24,0.05);
+    }
+    .aia-panel-title { font-size: clamp(1.35rem, 2.2vw, 1.75rem); color: var(--ink); margin: 0 0 0.5rem; }
+    .aia-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: clamp(1.5rem, 3vw, 2.75rem); }
+    .aia-list li { display: flex; align-items: center; gap: 1rem; padding: 0.95rem 0; border-bottom: 1px solid rgba(176,141,69,0.28); font-size: clamp(1.05rem, 1.7vw, 1.3rem); color: var(--ink); }
+    .aia-list li:nth-last-child(-n+2) { border-bottom: 0; }
+    .aia-icon { flex-shrink: 0; width: 60px; height: 60px; border-radius: 50%; border: 1.5px solid var(--gold); display: inline-flex; align-items: center; justify-content: center; color: var(--porphyry); }
+    .aia-icon svg { width: 26px; height: 26px; }
+    .aia-close { margin-top: clamp(2.5rem, 5vw, 3.5rem); text-align: center; }
+    .aia-rule { display: block; height: 1px; background: var(--gold); opacity: 0.8; margin: 0 auto clamp(1.75rem, 3.5vw, 2.5rem); width: 84%; }
+    .aia-close p { font-size: clamp(1.5rem, 2.6vw, 2.2rem); line-height: 1.3; color: var(--ink); font-weight: 600; }
+    .aia-close p em { font-style: normal; color: var(--porphyry); }
+    @media (max-width: 960px) {
+      .aia-grid { grid-template-columns: 1fr; }
+      .aia-copy p { max-width: none; }
+    }
+    @media (max-width: 720px) {
+      .aia-list { grid-template-columns: 1fr; }
+      .aia-list li:nth-last-child(2) { border-bottom: 1px solid rgba(176,141,69,0.28); }
+      .aia-br { display: none; }
+      .aia-arc { right: -760px; top: -700px; }
+      .aia-line-h2, .aia-line-v2, .aia-path-3, .aia-dot { display: none; }
+      .aia-icon { width: 50px; height: 50px; } .aia-icon svg { width: 22px; height: 22px; }
+      .aia-rule { width: 100%; }
+    }
+
     /* Mobile menu */
     .nav-toggle { display: none; width: 42px; height: 42px; border: 1px solid rgba(176,141,69,0.45); border-radius: 999px;
       background: rgba(255,255,255,0.6); flex-direction: column; align-items: center; justify-content: center; gap: 5px;
@@ -1760,27 +1820,37 @@
   </section>
 
   <!-- SECTION 3B: AI THAT TAKES ACTION -->
-  <section class="surface-marble">
-    <div class="container fit-grid">
-      <div class="section-head">
+  <section class="surface-light" id="ai-action">
+    <div class="aia-bg" aria-hidden="true">
+      <i class="aia-arc"></i>
+      <i class="aia-line aia-line-h1"></i><i class="aia-line aia-line-h2"></i><i class="aia-line aia-line-v1"></i><i class="aia-line aia-line-v2"></i>
+      <i class="aia-path aia-path-1"></i><i class="aia-path aia-path-2"></i><i class="aia-path aia-path-3"></i>
+      <b class="aia-dot" style="left:2.1%; top:72%"></b><b class="aia-dot" style="left:9.4%; top:92%"></b>
+      <b class="aia-dot" style="right:13.8%; top:8%"></b><b class="aia-dot" style="right:1.9%; top:11%"></b>
+    </div>
+    <div class="container aia-grid">
+      <div class="aia-copy">
         <span class="mono-receipt reveal reveal-fade">// AI THAT TAKES ACTION</span>
-        <h2 class="reveal reveal-wipe">Your AI should do more than answer questions.</h2>
+        <h2 class="reveal reveal-wipe">Your AI should<br class="aia-br"> <em>Do more</em> than<br class="aia-br"> answer questions.</h2>
         <p class="reveal reveal-fade delay-1">We build AI agents that can participate in real business workflows.</p>
-        <p class="reveal reveal-fade delay-1">They can:</p>
       </div>
-      <div>
-        <ul class="fit-list reveal reveal-fade delay-2" style="margin-top:0">
-          <li>Engage leads</li>
-          <li>Answer questions</li>
-          <li>Qualify opportunities</li>
-          <li>Follow up</li>
-          <li>Route conversations</li>
-          <li>Book appointments</li>
-          <li>Trigger workflows</li>
-          <li>Update your CRM</li>
+      <div class="aia-panel reveal reveal-fade delay-1">
+        <p class="aia-panel-title">They can:</p>
+        <ul class="aia-list">
+          <li><span class="aia-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><circle cx="16.5" cy="9.5" r="2.4"/><path d="M15 19a4.6 4.6 0 0 1 5.5-4.4"/></svg></span><span>Engage leads</span></li>
+          <li><span class="aia-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="8" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M8 7l7.8 1M7.2 7.8 10.8 16M16.8 10l-3.6 6"/></svg></span><span>Route conversations</span></li>
+          <li><span class="aia-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5a2 2 0 0 1-2 2H9l-4.5 3.5V6.5a2 2 0 0 1 2-2H18a2 2 0 0 1 2 2z"/></svg></span><span>Answer questions</span></li>
+          <li><span class="aia-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><span>Book appointments</span></li>
+          <li><span class="aia-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6.2 7.4V19l-3.6-1.8v-4.8z"/></svg></span><span>Qualify opportunities</span></li>
+          <li><span class="aia-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.4M12 18.8v2.4M2.8 12h2.4M18.8 12h2.4M5.5 5.5l1.7 1.7M16.8 16.8l1.7 1.7M5.5 18.5l1.7-1.7M16.8 7.2l1.7-1.7"/></svg></span><span>Trigger workflows</span></li>
+          <li><span class="aia-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7.5 8 6 8-6"/></svg></span><span>Follow up</span></li>
+          <li><span class="aia-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="7.5" ry="2.8"/><path d="M4.5 6v12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8V6M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg></span><span>Update your CRM</span></li>
         </ul>
-        <p class="reveal reveal-fade delay-3" style="margin-top:1.5rem; font-size:clamp(1.05rem, 2.2vw, 1.25rem)">Human when it matters. Automated when it doesn&rsquo;t.</p>
       </div>
+    </div>
+    <div class="container aia-close reveal reveal-fade delay-2">
+      <span class="aia-rule" aria-hidden="true"></span>
+      <p><em>Human when it matters.</em> Automated when it doesn&rsquo;t.</p>
     </div>
   </section>
 
