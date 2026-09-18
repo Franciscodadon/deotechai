@@ -908,93 +908,129 @@
     .med-connector { display: none; }
 
     /* ==========================================================================
-       SECTION 5: WHO THIS IS FOR (Empire Map)
+       SECTION 5: WHO WE HELP (Command-center orbit)
        ========================================================================== */
-    .fit-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: clamp(2rem, 5vw, 4rem);
-      align-items: center;
+    #fit { position: relative; overflow: hidden; background: #F7F3EB; color: var(--ink); display: block; }
+    #fit > .container { position: relative; z-index: 1; max-width: 1340px; margin: 0 auto; }
+    #fit::before {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background: linear-gradient(to left, rgba(214,182,110,0.22) 0%, rgba(214,182,110,0.08) 22%, rgba(214,182,110,0) 48%);
+    }
+    #fit::after {
+      content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.28;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.45 0 0 0 0 0.25 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .wwh-marks { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+    .wwh-marks i, .wwh-marks b { position: absolute; }
+    .wwh-marks i { background: rgba(176,141,69,0.36); }
+    .wwh-mark-v1 { right: 3.6%; top: 0; width: 1px; height: 100%; }
+    .wwh-mark-h1 { right: 0; top: 12%; width: 6.5%; height: 1px; }
+    .wwh-mark-h2 { right: 0; top: 48.5%; width: 9%; height: 1px; }
+    .wwh-mark-h3 { right: 0; top: 88%; width: 9%; height: 1px; }
+    .wwh-mark-v2 { right: 12.6%; top: 72%; width: 1px; height: 28%; }
+    .wwh-marks b { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); transform: translate(50%, -50%); }
+    .wwh-mark-d1 { right: 3.6%; top: 12%; }
+    .wwh-mark-d2 { right: 2.6%; top: 48.5%; }
+    .wwh-mark-d3 { right: 3.6%; top: 88%; }
+    .wwh-mark-d4 { right: 12.6%; top: 72%; width: 6px; height: 6px; }
+    .wwh-mark-d5 { right: 22%; top: 5.5%; width: 6px; height: 6px; }
+
+    .wwh-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+    .wwh-copy { position: relative; z-index: 2; max-width: 600px; }
+    .wwh-eyebrow { display: flex; align-items: center; gap: 1rem; color: var(--porphyry); margin-bottom: 1.5rem; }
+    .wwh-eyebrow::after { content: ""; display: block; width: 130px; height: 1px; background: var(--gold); opacity: 0.85; }
+    .wwh-copy h2 { font-size: clamp(1.85rem, 2.9vw, 2.7rem); line-height: 1.1; text-transform: uppercase; letter-spacing: 0; color: var(--ink); margin-bottom: 1.5rem; }
+    .wwh-copy h2 em { font-style: normal; color: var(--porphyry); }
+    .wwh-copy > p { font-size: clamp(1.1rem, 1.9vw, 1.35rem); color: var(--ink-soft); line-height: 1.5; max-width: 40ch; }
+    .wwh-especially { display: block; color: var(--porphyry); font-size: 0.82rem; letter-spacing: 0.22em; margin: 2.25rem 0 0.35rem; }
+    .wwh-list { display: grid; grid-template-columns: 1fr 1fr; column-gap: 0; max-width: 620px; }
+    .wwh-list li { display: flex; align-items: center; gap: 0.9rem; padding: 1.05rem 1rem 1.05rem 0; border-bottom: 1px solid rgba(176,141,69,0.32); font-family: 'Cormorant', Georgia, serif; font-size: clamp(1.15rem, 1.7vw, 1.35rem); color: var(--ink); }
+    .wwh-list li:nth-last-child(-n+2) { border-bottom: 0; }
+    .wwh-list li::before {
+      content: ""; flex-shrink: 0; width: 22px; height: 22px; background: var(--gold);
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 100% no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 100% no-repeat;
     }
 
-    .fit-list { display: grid; gap: 0.75rem; margin-top: 1.5rem; }
-    .fit-list li { display: flex; align-items: center; gap: 0.75rem; color: var(--ink); font-size: 1.1rem; }
-    .fit-list li::before {
-      content: "";
-      flex-shrink: 0;
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      background: var(--gold-bright);
-      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 60% no-repeat;
-      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 60% no-repeat;
+    /* Diagram */
+    .orbit-wrap { position: relative; }
+    .orbit {
+      position: relative; width: 100%; max-width: 640px; margin: 0 auto; aspect-ratio: 1;
+      container-type: inline-size; outline: none; z-index: 1;
+      --r: 36cqw;
     }
-    .fit-list-title { display: block; margin-top: 1.5rem; }
+    .orbit:focus-visible { outline: 2px solid var(--gold); outline-offset: 8px; border-radius: 50%; }
+    .orbit-deco { position: absolute; left: 50%; top: 50%; width: 230%; height: 230%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0;
+      -webkit-mask-image: linear-gradient(to right, transparent 12%, rgba(0,0,0,0.55) 32%, #000 48%);
+      mask-image: linear-gradient(to right, transparent 12%, rgba(0,0,0,0.55) 32%, #000 48%);
+    }
+    .orbit-deco circle { fill: none; stroke: var(--gold); vector-effect: non-scaling-stroke; }
+    .orbit-deco .d1 { stroke-width: 1px; opacity: 0.30; }
+    .orbit-deco .d2 { stroke-width: 1px; opacity: 0.22; }
+    .orbit-deco .d3 { stroke-width: 1px; opacity: 0.16; }
+    .orbit-deco .dd { fill: var(--gold); stroke: none; opacity: 0.6; }
+    .orbit-ring { position: absolute; left: 50%; top: 50%; width: calc(var(--r) * 2); height: calc(var(--r) * 2); transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid rgba(176,141,69,0.8); z-index: 1; pointer-events: none; }
+    .orbit-rot { position: absolute; inset: 0; z-index: 2; }
+    .orbit-spokes { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+    .orbit-spokes line { stroke: var(--gold); stroke-width: 1.5px; vector-effect: non-scaling-stroke; opacity: 0.9; }
+    .orbit-node { position: absolute; left: 50%; top: 50%; width: 0; height: 0; transform: rotate(var(--a)) translateY(calc(-1 * var(--r))) rotate(calc(-1 * var(--a))); }
+    .orbit-card {
+      position: absolute; left: 0; top: 0; transform: translate(-50%, -50%);
+      width: 28cqw; padding: 2.6cqw 1.4cqw 2.4cqw; box-sizing: border-box;
+      display: flex; flex-direction: column; align-items: center; gap: 1.5cqw;
+      background: #FBF8F1; border: 1px solid rgba(176,141,69,0.62); border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(28,27,24,0.08), 0 1px 2px rgba(28,27,24,0.05);
+      color: var(--porphyry);
+    }
+    .orbit-card svg { width: 5.4cqw; height: 5.4cqw; }
+    .orbit-card span { font-family: 'IBM Plex Mono', 'Courier New', monospace; font-size: max(0.6rem, 2cqw); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; }
+    .orbit-hub {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      width: 34cqw; height: 34cqw; border-radius: 50%; z-index: 3;
+      background: radial-gradient(120% 120% at 32% 22%, #8A2B3D 0%, #5E1B2A 48%, #3A1119 100%);
+      border: 1.5px solid var(--gold-bright);
+      box-shadow: 0 14px 30px rgba(58,17,25,0.28), inset 0 0 0 1px rgba(255,255,255,0.04);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.6cqw; text-align: center;
+    }
+    .orbit-hub::before { content: ""; position: absolute; inset: 5.5%; border-radius: 50%; border: 1px solid rgba(199,154,78,0.7); pointer-events: none; }
+    .orbit-hub .h-title { font-family: 'Cinzel', Georgia, serif; font-weight: 700; letter-spacing: 0.06em; color: var(--alabaster); font-size: max(0.9rem, 3.5cqw); line-height: 1; }
+    .orbit-hub .h-sub { font-family: 'IBM Plex Mono', 'Courier New', monospace; letter-spacing: 0.22em; color: var(--gold-bright); font-size: max(0.5rem, 1.85cqw); line-height: 1; }
 
-    .empire-map {
-      position: relative;
-      width: 100%;
-      max-width: 480px;
-      margin: 0 auto;
-      aspect-ratio: 1;
-      container-type: inline-size;
+    @keyframes orbitTurn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes orbitHold { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(-360deg); } }
+    @media (prefers-reduced-motion: no-preference) and (min-width: 601px) {
+      .orbit-rot { animation: orbitTurn 110s linear infinite; }
+      .orbit-card { animation: orbitHold 110s linear infinite; }
+      .orbit:hover .orbit-rot, .orbit:hover .orbit-card,
+      .orbit:focus-within .orbit-rot, .orbit:focus-within .orbit-card,
+      .orbit:focus .orbit-rot, .orbit:focus .orbit-card { animation-play-state: paused; }
     }
-    .empire-map svg.map-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-    .empire-map .net-line { stroke: var(--bronze); opacity: 0.7; }
 
-    .map-hub {
-      position: absolute;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-      width: 36%;
-      aspect-ratio: 1.9 / 1;
-      border-radius: 999px;
-      background: radial-gradient(120% 150% at 30% 20%, #7A2233 0%, #4A1622 45%, #241017 100%);
-      border: 1px solid rgba(199,154,78,0.45);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.4cqw;
-      animation: hubPulse 3s var(--ease-carved) infinite;
-      z-index: 2;
-      text-align: center;
+    @media (max-width: 1200px) {
+      .wwh-copy h2 { font-size: clamp(1.85rem, 2.7vw, 2.4rem); }
+      .wwh-eyebrow::after { width: 90px; }
     }
-    .map-hub .h-title { font-family: 'Cinzel', Georgia, serif; font-weight: 700; letter-spacing: 0.08em; color: var(--alabaster); font-size: 3.2cqw; }
-    .map-hub .h-sub { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.2em; color: var(--gold-bright); font-size: 2cqw; }
-
-    .map-node {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      width: 23%;
-      z-index: 1;
+    @media (max-width: 960px) {
+      .wwh-grid { grid-template-columns: 1fr; }
+      .wwh-copy { max-width: none; }
+      .orbit { max-width: 560px; margin-top: 1rem; }
+      .orbit-deco { width: 170%; height: 170%;
+        -webkit-mask-image: radial-gradient(circle at center, #000 30%, rgba(0,0,0,0.5) 45%, transparent 60%);
+        mask-image: radial-gradient(circle at center, #000 30%, rgba(0,0,0,0.5) 45%, transparent 60%); }
+      .wwh-mark-h2, .wwh-mark-d2, .wwh-mark-d5 { display: none; }
     }
-    .map-node::after {
-      content: "";
-      position: absolute;
-      left: 50%; top: 100%;
-      width: 90%; height: 18%;
-      transform: translate(-50%, -30%);
-      background: radial-gradient(ellipse at center, rgba(199,154,78,0.35), transparent 70%);
-      pointer-events: none;
+    @media (max-width: 600px) {
+      .orbit { --r: 38cqw; }
+      .orbit-card { width: 32cqw; padding: 2.4cqw 1cqw 2.2cqw; border-radius: 10px; gap: 1.4cqw; }
+      .orbit-card svg { width: 6.2cqw; height: 6.2cqw; }
+      .orbit-card span { font-size: max(0.66rem, 2.3cqw); letter-spacing: 0.1em; }
+      .orbit-hub { width: 33cqw; height: 33cqw; }
+      .orbit-hub .h-title { font-size: max(0.7rem, 3.4cqw); letter-spacing: 0.04em; }
+      .orbit-hub .h-sub { font-size: max(0.56rem, 1.9cqw); letter-spacing: 0.14em; }
+      .wwh-list { grid-template-columns: 1fr; }
+      .wwh-list li:nth-last-child(2) { border-bottom: 1px solid rgba(176,141,69,0.32); }
+      .wwh-marks { display: none; }
     }
-    .map-node-card {
-      background: #FFFFFF;
-      color: var(--ink);
-      border-radius: 12px;
-      padding: 2.4cqw 1.5cqw;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.2cqw;
-      box-shadow: var(--shadow-md);
-      border: 1px solid rgba(28,27,24,0.06);
-      transition: transform 0.3s var(--ease-carved), box-shadow 0.3s var(--ease-carved);
-    }
-    .map-node-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
-    .map-node-card svg { width: 5.6cqw; height: 5.6cqw; color: var(--porphyry); }
-    .map-node-card span { font-family: 'IBM Plex Mono', monospace; font-size: 2.2cqw; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); }
 
     /* ==========================================================================
        SECTION 6: NOT FOR
@@ -1212,14 +1248,14 @@
       html { scroll-behavior: auto; }
       .hero-eyebrow, .hero-title, .hero-lede, .hero-body, .hero-actions, .hero-receipts,
       .arch-scene, .arch-engraving, .hero-sat, .dash-chart i,
-      .net-line, .map-hub, .chaos-arrow, .medallion-ring, .seal-text-ring,
+      .net-line, .chaos-arrow, .medallion-ring, .seal-text-ring,
       .reveal, .seal .leaf, .laurel-progress .leaf, .laurel-label {
         animation: none !important;
         opacity: 1 !important;
         clip-path: none !important;
         transform: none !important;
       }
-      .hero-sat, .map-node, .hero-dash, .map-hub, .laurel-label { transform: translate(-50%, -50%) !important; }
+      .hero-sat, .hero-dash, .laurel-label { transform: translate(-50%, -50%) !important; }
       .blueprint-line { animation: none !important; stroke-dashoffset: 0 !important; }
       .pulse-ring, .dash-live::before { animation: none !important; }
     }
@@ -1233,7 +1269,6 @@
       .system-head { grid-template-columns: 1fr; text-align: center; }
       .system-head .section-head { margin: 0 auto; }
       .fit-grid { grid-template-columns: 1fr; }
-      .fit-grid .empire-map { max-width: 440px; }
     }
 
     @media (max-width: 820px) {
@@ -1861,14 +1896,18 @@
   </section>
 
   <!-- SECTION 5: WHO THIS IS FOR (EMPIRE MAP) -->
-  <section class="surface-dark" id="fit">
-    <div class="container fit-grid">
-      <div class="section-head">
-        <span class="mono-receipt reveal reveal-fade">// WHO WE HELP</span>
-        <h2 class="reveal reveal-wipe">Built for businesses with momentum.</h2>
+  <section id="fit">
+    <div class="wwh-marks" aria-hidden="true">
+      <i class="wwh-mark-v1"></i><i class="wwh-mark-h1"></i><i class="wwh-mark-h2"></i><i class="wwh-mark-h3"></i><i class="wwh-mark-v2"></i>
+      <b class="wwh-mark-d1"></b><b class="wwh-mark-d2"></b><b class="wwh-mark-d3"></b><b class="wwh-mark-d4"></b><b class="wwh-mark-d5"></b>
+    </div>
+    <div class="container wwh-grid">
+      <div class="wwh-copy">
+        <span class="mono-receipt wwh-eyebrow reveal reveal-fade">// WHO WE HELP</span>
+        <h2 class="reveal reveal-wipe">Built for businesses<br> with <em>momentum.</em></h2>
         <p class="reveal reveal-fade delay-1">Deo Tech AI works with growing founders and teams that have reached the point where their current systems can no longer keep up with their growth.</p>
-        <span class="mono-receipt fit-list-title reveal reveal-fade delay-3">Especially:</span>
-        <ul class="fit-list reveal reveal-fade delay-3">
+        <span class="mono-receipt wwh-especially reveal reveal-fade delay-2">Especially:</span>
+        <ul class="wwh-list reveal reveal-fade delay-2">
           <li>Consultants and coaches</li>
           <li>Agencies</li>
           <li>Real estate businesses</li>
@@ -1878,23 +1917,36 @@
         </ul>
       </div>
 
-      <div class="empire-map reveal reveal-fade delay-2" aria-label="One command center connected to sales, operations, clients, team, knowledge, and revenue">
-        <svg class="map-lines" viewBox="0 0 400 400" aria-hidden="true">
-          <path class="net-line" pathLength="100" d="M200,200 L200,50"/>
-          <path class="net-line" pathLength="100" style="animation-delay:-0.6s" d="M200,200 L330,125"/>
-          <path class="net-line" pathLength="100" style="animation-delay:-1.2s" d="M200,200 L330,275"/>
-          <path class="net-line" pathLength="100" style="animation-delay:-1.8s" d="M200,200 L200,350"/>
-          <path class="net-line" pathLength="100" style="animation-delay:-2.4s" d="M200,200 L70,275"/>
-          <path class="net-line" pathLength="100" style="animation-delay:-3.0s" d="M200,200 L70,125"/>
-        </svg>
-        <div class="map-hub"><span class="h-title">DEO TECH AI</span><span class="h-sub">COMMAND CENTER</span></div>
-
-        <div class="map-node" style="left:50%; top:12.5%"><div class="map-node-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg><span>Sales</span></div></div>
-        <div class="map-node" style="left:82.5%; top:31.25%"><div class="map-node-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg><span>Operations</span></div></div>
-        <div class="map-node" style="left:82.5%; top:68.75%"><div class="map-node-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21a8 8 0 1 0-16 0"/><circle cx="12" cy="9" r="4"/></svg><span>Clients</span></div></div>
-        <div class="map-node" style="left:50%; top:87.5%"><div class="map-node-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 4a3 3 0 0 1 0 6M21 20a6 6 0 0 0-5-5.9"/></svg><span>Team</span></div></div>
-        <div class="map-node" style="left:17.5%; top:68.75%"><div class="map-node-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg><span>Knowledge</span></div></div>
-        <div class="map-node" style="left:17.5%; top:31.25%"><div class="map-node-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18 10 12l4 4 6-8"/><path d="M15 8h5v5"/></svg><span>Revenue</span></div></div>
+      <div class="orbit-wrap reveal reveal-fade delay-2">
+        <div class="orbit" role="group" tabindex="0" aria-label="Deo Tech AI command center connected to sales, operations, clients, team, knowledge, and revenue">
+          <svg class="orbit-deco" viewBox="-115 -115 230 230" aria-hidden="true">
+            <circle class="d1" cx="0" cy="0" r="47"/>
+            <circle class="d2" cx="0" cy="0" r="60"/>
+            <circle class="d3" cx="0" cy="0" r="76"/>
+            <circle class="d3" cx="0" cy="0" r="96"/>
+            <circle class="dd" cx="30.2" cy="-46" r="1.1"/>
+            <circle class="dd" cx="55" cy="-24.2" r="1.1"/>
+            <circle class="dd" cx="54" cy="52" r="1.1"/>
+          </svg>
+          <div class="orbit-ring" aria-hidden="true"></div>
+          <div class="orbit-rot" aria-hidden="true">
+            <svg class="orbit-spokes" viewBox="-50 -50 100 100">
+            <line x1="0" y1="0" x2="0.00" y2="-36.00"/>
+            <line x1="0" y1="0" x2="31.18" y2="-18.00"/>
+            <line x1="0" y1="0" x2="31.18" y2="18.00"/>
+            <line x1="0" y1="0" x2="0.00" y2="36.00"/>
+            <line x1="0" y1="0" x2="-31.18" y2="18.00"/>
+            <line x1="0" y1="0" x2="-31.18" y2="-18.00"/>
+            </svg>
+          <div class="orbit-node" style="--a:0deg"><div class="orbit-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5.2"/><circle cx="12" cy="12" r="1.6" fill="currentColor" stroke="none"/></svg><span>Sales</span></div></div>
+          <div class="orbit-node" style="--a:60deg"><div class="orbit-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/><circle cx="12" cy="12" r="7"/></svg><span>Operations</span></div></div>
+          <div class="orbit-node" style="--a:120deg"><div class="orbit-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.5" r="4"/><path d="M4.5 20.5a7.5 7.5 0 0 1 15 0"/></svg><span>Clients</span></div></div>
+          <div class="orbit-node" style="--a:180deg"><div class="orbit-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8.5" r="3.2"/><path d="M2.8 20a6.2 6.2 0 0 1 12.4 0"/><path d="M15.5 5.6a3.2 3.2 0 0 1 0 6.2M21.2 20a6.2 6.2 0 0 0-4.6-6"/></svg><span>Team</span></div></div>
+          <div class="orbit-node" style="--a:240deg"><div class="orbit-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5.5h6a3 3 0 0 1 3 3V20a2.2 2.2 0 0 0-2.2-2.2H3z"/><path d="M21 5.5h-6a3 3 0 0 0-3 3V20a2.2 2.2 0 0 1 2.2-2.2H21z"/></svg><span>Knowledge</span></div></div>
+          <div class="orbit-node" style="--a:300deg"><div class="orbit-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 18.5 9.5 12.5l4 4 7-8"/><path d="M15.5 8.5h5v5"/></svg><span>Revenue</span></div></div>
+          </div>
+          <div class="orbit-hub"><span class="h-title">DEO TECH AI</span><span class="h-sub">COMMAND CENTER</span></div>
+        </div>
       </div>
     </div>
   </section>
