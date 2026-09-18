@@ -1432,6 +1432,12 @@
     .aia-rule { display: block; height: 1px; background: var(--gold); opacity: 0.8; margin: 0 auto clamp(1.75rem, 3.5vw, 2.5rem); width: 84%; }
     .aia-close p { font-size: clamp(1.5rem, 2.6vw, 2.2rem); line-height: 1.3; color: var(--ink); font-weight: 600; }
     .aia-close p em { font-style: normal; color: var(--porphyry); }
+    @media (max-width: 1200px) {
+      .aia-br { display: none; }
+      .aia-list { column-gap: 1.25rem; }
+      .aia-list li { font-size: 1.05rem; gap: 0.8rem; }
+      .aia-icon { width: 52px; height: 52px; } .aia-icon svg { width: 23px; height: 23px; }
+    }
     @media (max-width: 960px) {
       .aia-grid { grid-template-columns: 1fr; }
       .aia-copy p { max-width: none; }
